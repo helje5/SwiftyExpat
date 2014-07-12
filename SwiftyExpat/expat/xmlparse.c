@@ -10,6 +10,8 @@
 
 #define XML_BUILDING_EXPAT 1
 
+#define HAVE_EXPAT_CONFIG_H 1 // hh hardcode
+
 #ifdef COMPILED_FROM_DSP
 #include "winconfig.h"
 #elif defined(MACOS_CLASSIC)
