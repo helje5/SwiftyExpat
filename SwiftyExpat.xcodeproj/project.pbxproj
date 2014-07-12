@@ -26,7 +26,21 @@
 		E8FB77821971667F00E0557D /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776F1971667F00E0557D /* xmltok.h */; };
 		E8FB77841971667F00E0557D /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77711971667F00E0557D /* xmltok_impl.h */; };
 		E8FB7786197166D800E0557D /* latin1tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB7785197166D800E0557D /* latin1tab.h */; };
+		E8FB77941971767500E0557D /* SwiftyExpatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB77931971767500E0557D /* SwiftyExpatTests.swift */; };
+		E8FB77951971767500E0557D /* SwiftyExpat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FB773E1971609A00E0557D /* SwiftyExpat.framework */; };
+		E8FB779C1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB779B1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h */; };
+		E8FB779E1971E5AA00E0557D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB779D1971E5AA00E0557D /* main.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E8FB77961971767500E0557D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E8FB77351971609A00E0557D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E8FB773D1971609A00E0557D;
+			remoteInfo = SwiftyExpat;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E8FB773E1971609A00E0557D /* SwiftyExpat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyExpat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +66,11 @@
 		E8FB77711971667F00E0557D /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmltok_impl.h; sourceTree = "<group>"; };
 		E8FB7785197166D800E0557D /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = latin1tab.h; sourceTree = "<group>"; };
 		E8FB77881971673600E0557D /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmltok_ns.c; sourceTree = "<group>"; };
+		E8FB778F1971767500E0557D /* SwiftyExpatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyExpatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FB77921971767500E0557D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8FB77931971767500E0557D /* SwiftyExpatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyExpatTests.swift; sourceTree = "<group>"; };
+		E8FB779B1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftyExpat-Bridging-Header.h"; sourceTree = "<group>"; };
+		E8FB779D1971E5AA00E0557D /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +81,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8FB778C1971767500E0557D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8FB77951971767500E0557D /* SwiftyExpat.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -69,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				E8FB77401971609A00E0557D /* SwiftyExpat */,
+				E8FB77901971767500E0557D /* SwiftyExpatTests */,
 				E8FB773F1971609A00E0557D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				E8FB773E1971609A00E0557D /* SwiftyExpat.framework */,
+				E8FB778F1971767500E0557D /* SwiftyExpatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,6 +113,7 @@
 		E8FB77401971609A00E0557D /* SwiftyExpat */ = {
 			isa = PBXGroup;
 			children = (
+				E8FB779D1971E5AA00E0557D /* main.swift */,
 				E8FB77431971609A00E0557D /* SwiftyExpat.h */,
 				E8FB775E1971667F00E0557D /* expat */,
 				E8FB77411971609A00E0557D /* Supporting Files */,
@@ -94,6 +124,7 @@
 		E8FB77411971609A00E0557D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E8FB779B1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h */,
 				E8FB77421971609A00E0557D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -104,21 +135,9 @@
 			children = (
 				E8FB77621971667F00E0557D /* COPYING */,
 				E8FB77611971667F00E0557D /* Changes */,
-				E8FB7787197166E600E0557D /* char tables */,
-				E8FB775F1971667F00E0557D /* ascii.h */,
 				E8FB77631971667F00E0557D /* expat.h */,
-				E8FB77641971667F00E0557D /* expat_config.h */,
-				E8FB77651971667F00E0557D /* expat_external.h */,
-				E8FB77671971667F00E0557D /* internal.h */,
-				E8FB77691971667F00E0557D /* nametab.h */,
-				E8FB776B1971667F00E0557D /* xmlparse.c */,
-				E8FB776D1971667F00E0557D /* xmlrole.h */,
-				E8FB776C1971667F00E0557D /* xmlrole.c */,
-				E8FB776F1971667F00E0557D /* xmltok.h */,
-				E8FB776E1971667F00E0557D /* xmltok.c */,
-				E8FB77881971673600E0557D /* xmltok_ns.c */,
-				E8FB77711971667F00E0557D /* xmltok_impl.h */,
-				E8FB77701971667F00E0557D /* xmltok_impl.c */,
+				E8FB7787197166E600E0557D /* char tables */,
+				E8FB779F1971E5EE00E0557D /* implementation */,
 			);
 			path = expat;
 			sourceTree = "<group>";
@@ -132,6 +151,43 @@
 				E8FB776A1971667F00E0557D /* utf8tab.h */,
 			);
 			name = "char tables";
+			sourceTree = "<group>";
+		};
+		E8FB77901971767500E0557D /* SwiftyExpatTests */ = {
+			isa = PBXGroup;
+			children = (
+				E8FB77931971767500E0557D /* SwiftyExpatTests.swift */,
+				E8FB77911971767500E0557D /* Supporting Files */,
+			);
+			path = SwiftyExpatTests;
+			sourceTree = "<group>";
+		};
+		E8FB77911971767500E0557D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E8FB77921971767500E0557D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E8FB779F1971E5EE00E0557D /* implementation */ = {
+			isa = PBXGroup;
+			children = (
+				E8FB775F1971667F00E0557D /* ascii.h */,
+				E8FB77641971667F00E0557D /* expat_config.h */,
+				E8FB77651971667F00E0557D /* expat_external.h */,
+				E8FB77671971667F00E0557D /* internal.h */,
+				E8FB77691971667F00E0557D /* nametab.h */,
+				E8FB776B1971667F00E0557D /* xmlparse.c */,
+				E8FB776D1971667F00E0557D /* xmlrole.h */,
+				E8FB776C1971667F00E0557D /* xmlrole.c */,
+				E8FB776F1971667F00E0557D /* xmltok.h */,
+				E8FB776E1971667F00E0557D /* xmltok.c */,
+				E8FB77881971673600E0557D /* xmltok_ns.c */,
+				E8FB77711971667F00E0557D /* xmltok_impl.h */,
+				E8FB77701971667F00E0557D /* xmltok_impl.c */,
+			);
+			name = implementation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +204,7 @@
 				E8FB77731971667F00E0557D /* asciitab.h in Headers */,
 				E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */,
 				E8FB77801971667F00E0557D /* xmlrole.h in Headers */,
+				E8FB779C1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h in Headers */,
 				E8FB77761971667F00E0557D /* expat.h in Headers */,
 				E8FB77781971667F00E0557D /* expat_external.h in Headers */,
 				E8FB777A1971667F00E0557D /* internal.h in Headers */,
@@ -179,6 +236,24 @@
 			productReference = E8FB773E1971609A00E0557D /* SwiftyExpat.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		E8FB778E1971767500E0557D /* SwiftyExpatTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E8FB779A1971767500E0557D /* Build configuration list for PBXNativeTarget "SwiftyExpatTests" */;
+			buildPhases = (
+				E8FB778B1971767500E0557D /* Sources */,
+				E8FB778C1971767500E0557D /* Frameworks */,
+				E8FB778D1971767500E0557D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E8FB77971971767500E0557D /* PBXTargetDependency */,
+			);
+			name = SwiftyExpatTests;
+			productName = SwiftyExpatTests;
+			productReference = E8FB778F1971767500E0557D /* SwiftyExpatTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -190,6 +265,10 @@
 				TargetAttributes = {
 					E8FB773D1971609A00E0557D = {
 						CreatedOnToolsVersion = 6.0;
+					};
+					E8FB778E1971767500E0557D = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = E8FB773D1971609A00E0557D;
 					};
 				};
 			};
@@ -206,6 +285,7 @@
 			projectRoot = "";
 			targets = (
 				E8FB773D1971609A00E0557D /* SwiftyExpat */,
+				E8FB778E1971767500E0557D /* SwiftyExpatTests */,
 			);
 		};
 /* End PBXProject section */
@@ -220,6 +300,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8FB778D1971767500E0557D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -229,11 +316,28 @@
 			files = (
 				E8FB77811971667F00E0557D /* xmltok.c in Sources */,
 				E8FB777E1971667F00E0557D /* xmlparse.c in Sources */,
+				E8FB779E1971E5AA00E0557D /* main.swift in Sources */,
 				E8FB777F1971667F00E0557D /* xmlrole.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E8FB778B1971767500E0557D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8FB77941971767500E0557D /* SwiftyExpatTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E8FB77971971767500E0557D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E8FB773D1971609A00E0557D /* SwiftyExpat */;
+			targetProxy = E8FB77961971767500E0557D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E8FB77521971609A00E0557D /* Debug */ = {
@@ -331,6 +435,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyExpat/SwiftyExpat-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -348,6 +453,39 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyExpat/SwiftyExpat-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		E8FB77981971767500E0557D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftyExpatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E8FB77991971767500E0557D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SwiftyExpatTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -370,6 +508,16 @@
 				E8FB77561971609A00E0557D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E8FB779A1971767500E0557D /* Build configuration list for PBXNativeTarget "SwiftyExpatTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E8FB77981971767500E0557D /* Debug */,
+				E8FB77991971767500E0557D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
