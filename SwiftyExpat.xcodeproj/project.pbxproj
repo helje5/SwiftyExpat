@@ -8,31 +8,50 @@
 
 /* Begin PBXBuildFile section */
 		E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77431971609A00E0557D /* SwiftyExpat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB774A1971609A00E0557D /* SwiftyExpat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FB773E1971609A00E0557D /* SwiftyExpat.framework */; };
+		E8FB77721971667F00E0557D /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB775F1971667F00E0557D /* ascii.h */; };
+		E8FB77731971667F00E0557D /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77601971667F00E0557D /* asciitab.h */; };
+		E8FB77741971667F00E0557D /* Changes in Resources */ = {isa = PBXBuildFile; fileRef = E8FB77611971667F00E0557D /* Changes */; };
+		E8FB77751971667F00E0557D /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = E8FB77621971667F00E0557D /* COPYING */; };
+		E8FB77761971667F00E0557D /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77631971667F00E0557D /* expat.h */; };
+		E8FB77771971667F00E0557D /* expat_config.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77641971667F00E0557D /* expat_config.h */; };
+		E8FB77781971667F00E0557D /* expat_external.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77651971667F00E0557D /* expat_external.h */; };
+		E8FB77791971667F00E0557D /* iasciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77661971667F00E0557D /* iasciitab.h */; };
+		E8FB777A1971667F00E0557D /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77671971667F00E0557D /* internal.h */; };
+		E8FB777C1971667F00E0557D /* nametab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77691971667F00E0557D /* nametab.h */; };
+		E8FB777D1971667F00E0557D /* utf8tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776A1971667F00E0557D /* utf8tab.h */; };
+		E8FB777E1971667F00E0557D /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776B1971667F00E0557D /* xmlparse.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1"; }; };
+		E8FB777F1971667F00E0557D /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776C1971667F00E0557D /* xmlrole.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1"; }; };
+		E8FB77801971667F00E0557D /* xmlrole.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776D1971667F00E0557D /* xmlrole.h */; };
+		E8FB77811971667F00E0557D /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776E1971667F00E0557D /* xmltok.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1"; }; };
+		E8FB77821971667F00E0557D /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776F1971667F00E0557D /* xmltok.h */; };
+		E8FB77841971667F00E0557D /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77711971667F00E0557D /* xmltok_impl.h */; };
+		E8FB7786197166D800E0557D /* latin1tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB7785197166D800E0557D /* latin1tab.h */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E8FB774B1971609A00E0557D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8FB77351971609A00E0557D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E8FB773D1971609A00E0557D;
-			remoteInfo = SwiftyExpat;
-		};
-		E8FB775A197160A200E0557D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E8FB77351971609A00E0557D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E8FB773D1971609A00E0557D;
-			remoteInfo = SwiftyExpat;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E8FB773E1971609A00E0557D /* SwiftyExpat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyExpat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FB77421971609A00E0557D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FB77431971609A00E0557D /* SwiftyExpat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyExpat.h; sourceTree = "<group>"; };
-		E8FB77491971609A00E0557D /* SwiftyExpatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyExpatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8FB775F1971667F00E0557D /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ascii.h; sourceTree = "<group>"; };
+		E8FB77601971667F00E0557D /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asciitab.h; sourceTree = "<group>"; };
+		E8FB77611971667F00E0557D /* Changes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changes; sourceTree = "<group>"; };
+		E8FB77621971667F00E0557D /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
+		E8FB77631971667F00E0557D /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expat.h; sourceTree = "<group>"; };
+		E8FB77641971667F00E0557D /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expat_config.h; sourceTree = "<group>"; };
+		E8FB77651971667F00E0557D /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expat_external.h; sourceTree = "<group>"; };
+		E8FB77661971667F00E0557D /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iasciitab.h; sourceTree = "<group>"; };
+		E8FB77671971667F00E0557D /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
+		E8FB77691971667F00E0557D /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nametab.h; sourceTree = "<group>"; };
+		E8FB776A1971667F00E0557D /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8tab.h; sourceTree = "<group>"; };
+		E8FB776B1971667F00E0557D /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmlparse.c; sourceTree = "<group>"; };
+		E8FB776C1971667F00E0557D /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmlrole.c; sourceTree = "<group>"; };
+		E8FB776D1971667F00E0557D /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmlrole.h; sourceTree = "<group>"; };
+		E8FB776E1971667F00E0557D /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmltok.c; sourceTree = "<group>"; };
+		E8FB776F1971667F00E0557D /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmltok.h; sourceTree = "<group>"; };
+		E8FB77701971667F00E0557D /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmltok_impl.c; sourceTree = "<group>"; };
+		E8FB77711971667F00E0557D /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmltok_impl.h; sourceTree = "<group>"; };
+		E8FB7785197166D800E0557D /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = latin1tab.h; sourceTree = "<group>"; };
+		E8FB77881971673600E0557D /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmltok_ns.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,14 +59,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E8FB77461971609A00E0557D /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E8FB774A1971609A00E0557D /* SwiftyExpat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,7 +77,6 @@
 			isa = PBXGroup;
 			children = (
 				E8FB773E1971609A00E0557D /* SwiftyExpat.framework */,
-				E8FB77491971609A00E0557D /* SwiftyExpatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -75,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				E8FB77431971609A00E0557D /* SwiftyExpat.h */,
+				E8FB775E1971667F00E0557D /* expat */,
 				E8FB77411971609A00E0557D /* Supporting Files */,
 			);
 			path = SwiftyExpat;
@@ -88,6 +99,41 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E8FB775E1971667F00E0557D /* expat */ = {
+			isa = PBXGroup;
+			children = (
+				E8FB77621971667F00E0557D /* COPYING */,
+				E8FB77611971667F00E0557D /* Changes */,
+				E8FB7787197166E600E0557D /* char tables */,
+				E8FB775F1971667F00E0557D /* ascii.h */,
+				E8FB77631971667F00E0557D /* expat.h */,
+				E8FB77641971667F00E0557D /* expat_config.h */,
+				E8FB77651971667F00E0557D /* expat_external.h */,
+				E8FB77671971667F00E0557D /* internal.h */,
+				E8FB77691971667F00E0557D /* nametab.h */,
+				E8FB776B1971667F00E0557D /* xmlparse.c */,
+				E8FB776D1971667F00E0557D /* xmlrole.h */,
+				E8FB776C1971667F00E0557D /* xmlrole.c */,
+				E8FB776F1971667F00E0557D /* xmltok.h */,
+				E8FB776E1971667F00E0557D /* xmltok.c */,
+				E8FB77881971673600E0557D /* xmltok_ns.c */,
+				E8FB77711971667F00E0557D /* xmltok_impl.h */,
+				E8FB77701971667F00E0557D /* xmltok_impl.c */,
+			);
+			path = expat;
+			sourceTree = "<group>";
+		};
+		E8FB7787197166E600E0557D /* char tables */ = {
+			isa = PBXGroup;
+			children = (
+				E8FB7785197166D800E0557D /* latin1tab.h */,
+				E8FB77601971667F00E0557D /* asciitab.h */,
+				E8FB77661971667F00E0557D /* iasciitab.h */,
+				E8FB776A1971667F00E0557D /* utf8tab.h */,
+			);
+			name = "char tables";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -95,7 +141,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FB777C1971667F00E0557D /* nametab.h in Headers */,
+				E8FB77821971667F00E0557D /* xmltok.h in Headers */,
+				E8FB777D1971667F00E0557D /* utf8tab.h in Headers */,
+				E8FB77721971667F00E0557D /* ascii.h in Headers */,
+				E8FB77731971667F00E0557D /* asciitab.h in Headers */,
 				E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */,
+				E8FB77801971667F00E0557D /* xmlrole.h in Headers */,
+				E8FB77761971667F00E0557D /* expat.h in Headers */,
+				E8FB77781971667F00E0557D /* expat_external.h in Headers */,
+				E8FB777A1971667F00E0557D /* internal.h in Headers */,
+				E8FB77771971667F00E0557D /* expat_config.h in Headers */,
+				E8FB7786197166D800E0557D /* latin1tab.h in Headers */,
+				E8FB77841971667F00E0557D /* xmltok_impl.h in Headers */,
+				E8FB77791971667F00E0557D /* iasciitab.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,25 +179,6 @@
 			productReference = E8FB773E1971609A00E0557D /* SwiftyExpat.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		E8FB77481971609A00E0557D /* SwiftyExpatTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E8FB77571971609A00E0557D /* Build configuration list for PBXNativeTarget "SwiftyExpatTests" */;
-			buildPhases = (
-				E8FB77451971609A00E0557D /* Sources */,
-				E8FB77461971609A00E0557D /* Frameworks */,
-				E8FB77471971609A00E0557D /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E8FB774C1971609A00E0557D /* PBXTargetDependency */,
-				E8FB775B197160A200E0557D /* PBXTargetDependency */,
-			);
-			name = SwiftyExpatTests;
-			productName = SwiftyExpatTests;
-			productReference = E8FB77491971609A00E0557D /* SwiftyExpatTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -150,10 +190,6 @@
 				TargetAttributes = {
 					E8FB773D1971609A00E0557D = {
 						CreatedOnToolsVersion = 6.0;
-					};
-					E8FB77481971609A00E0557D = {
-						CreatedOnToolsVersion = 6.0;
-						TestTargetID = E8FB773D1971609A00E0557D;
 					};
 				};
 			};
@@ -170,7 +206,6 @@
 			projectRoot = "";
 			targets = (
 				E8FB773D1971609A00E0557D /* SwiftyExpat */,
-				E8FB77481971609A00E0557D /* SwiftyExpatTests */,
 			);
 		};
 /* End PBXProject section */
@@ -180,13 +215,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E8FB77471971609A00E0557D /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				E8FB77751971667F00E0557D /* COPYING in Resources */,
+				E8FB77741971667F00E0557D /* Changes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,30 +227,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E8FB77451971609A00E0557D /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				E8FB77811971667F00E0557D /* xmltok.c in Sources */,
+				E8FB777E1971667F00E0557D /* xmlparse.c in Sources */,
+				E8FB777F1971667F00E0557D /* xmlrole.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E8FB774C1971609A00E0557D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E8FB773D1971609A00E0557D /* SwiftyExpat */;
-			targetProxy = E8FB774B1971609A00E0557D /* PBXContainerItemProxy */;
-		};
-		E8FB775B197160A200E0557D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E8FB773D1971609A00E0557D /* SwiftyExpat */;
-			targetProxy = E8FB775A197160A200E0557D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E8FB77521971609A00E0557D /* Debug */ = {
@@ -338,38 +351,6 @@
 			};
 			name = Release;
 		};
-		E8FB77581971609A00E0557D /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SwiftyExpatTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		E8FB77591971609A00E0557D /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = SwiftyExpatTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -387,14 +368,6 @@
 			buildConfigurations = (
 				E8FB77551971609A00E0557D /* Debug */,
 				E8FB77561971609A00E0557D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
-		E8FB77571971609A00E0557D /* Build configuration list for PBXNativeTarget "SwiftyExpatTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E8FB77581971609A00E0557D /* Debug */,
-				E8FB77591971609A00E0557D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};

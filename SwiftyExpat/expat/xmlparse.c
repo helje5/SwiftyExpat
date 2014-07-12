@@ -10,8 +10,6 @@
 
 #define XML_BUILDING_EXPAT 1
 
-#define HAVE_EXPAT_CONFIG_H 1 // hh hardcode
-
 #ifdef COMPILED_FROM_DSP
 #include "winconfig.h"
 #elif defined(MACOS_CLASSIC)
@@ -2938,7 +2936,8 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
           */
           unsigned char step = 0;
           unsigned long mask = nsAttsSize - 1;
-          j = uriHash & mask;  /* index into hash table */
+          // hh: made conversion explicit to avoid Xcode warning
+          j = (int)(uriHash & mask);  /* index into hash table */
           while (nsAtts[j].version == version) {
             /* for speed we compare stored hash values first */
             if (uriHash == nsAtts[j].hash) {
