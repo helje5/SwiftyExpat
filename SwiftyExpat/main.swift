@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Expat : OutputStream {
+struct Expat : OutputStream {
   
   let parser : XML_Parser
   
@@ -18,7 +18,7 @@ class Expat : OutputStream {
     
     var newParser : XML_Parser = nil
     encoding.withCString { cs in
-      // if I use parser, swiftc crashes
+      // if I use parser, swiftc crashes (if Expat is a class)
       // FIXME: use String for separator, and codepoints to get the Int?
       newParser = XML_ParserCreateNS(cs, 58 /* ':' */)
     }
