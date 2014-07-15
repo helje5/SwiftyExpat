@@ -30,7 +30,6 @@
 		E8FB77941971767500E0557D /* SwiftyExpatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB77931971767500E0557D /* SwiftyExpatTests.swift */; };
 		E8FB77951971767500E0557D /* SwiftyExpat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FB773E1971609A00E0557D /* SwiftyExpat.framework */; };
 		E8FB779C1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB779B1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h */; };
-		E8FB779E1971E5AA00E0557D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB779D1971E5AA00E0557D /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,7 +92,6 @@
 		E8FB77921971767500E0557D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FB77931971767500E0557D /* SwiftyExpatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyExpatTests.swift; sourceTree = "<group>"; };
 		E8FB779B1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftyExpat-Bridging-Header.h"; sourceTree = "<group>"; };
-		E8FB779D1971E5AA00E0557D /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				E8C667EB19757405004EFA0C /* Expat.swift */,
-				E8FB779D1971E5AA00E0557D /* main.swift */,
 				E8FB77431971609A00E0557D /* SwiftyExpat.h */,
 				E8FB775E1971667F00E0557D /* expat */,
 				E8FB77411971609A00E0557D /* Supporting Files */,
@@ -343,7 +340,6 @@
 			files = (
 				E8FB77811971667F00E0557D /* xmltok.c in Sources */,
 				E8FB777E1971667F00E0557D /* xmlparse.c in Sources */,
-				E8FB779E1971E5AA00E0557D /* main.swift in Sources */,
 				E8C667EC19757405004EFA0C /* Expat.swift in Sources */,
 				E8FB777F1971667F00E0557D /* xmlrole.c in Sources */,
 			);

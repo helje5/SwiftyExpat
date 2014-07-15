@@ -1302,7 +1302,8 @@ XML_GetAttributeInfo(XML_Parser parser)
 
 #ifdef EXPAT_WITH_BLOCKS
 #  define EXPAT_SET_CALLBACK(__VAR__, __TYPE__, __ARG__) \
-(__VAR__ = (__TYPE__)Block_copy(__ARG__))
+  ({ if (__VAR__ != NULL) Block_release(__VAR__); \
+     __VAR__ = (__TYPE__)Block_copy(__ARG__); })
 #else
 #  define EXPAT_SET_CALLBACK(__VAR__, __TYPE__, __ARG___) (__VAR == __ARG__)
 #endif

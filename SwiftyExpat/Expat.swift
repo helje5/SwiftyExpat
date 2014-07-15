@@ -14,7 +14,8 @@
  */
 class Expat : OutputStream {
   
-  let parser : XML_Parser
+  let parser   : XML_Parser
+  var isClosed = false
   
   init(encoding: String = "UTF-8", nsSeparator: Character = ":") {
     let sepUTF8   = ("" + nsSeparator).utf8
@@ -31,6 +32,7 @@ class Expat : OutputStream {
     parser = newParser
   }
   deinit {
+    println("freeing parser ...")
     XML_ParserFree(parser)
   }
   
@@ -38,9 +40,8 @@ class Expat : OutputStream {
   /* feed the parser */
   
   func write(cs: CString) {
-    let cslen   = strlen(cs)
-    let isFinal = cslen == 0
-    XML_Parse(parser, cs, Int32(cslen), isFinal ? 1 : 0)
+    let cslen = strlen(cs)
+    XML_Parse(parser, cs, Int32(cslen), 0)
   }
   
   func write(s: String) {
@@ -48,7 +49,32 @@ class Expat : OutputStream {
   }
   
   func close() {
+    if isClosed { return }
+
+    let isFinal : Int32 = 1
+    XML_Parse(parser, "", 0, isFinal)
     
+    resetCallbacks()
+    isClosed = true
+  }
+  
+  func resetCallbacks() {
+    // reset callbacks to fixup any potential cycles
+    XML_SetElementHandler           (parser, nil, nil)
+    XML_SetCharacterDataHandler     (parser, nil)
+    XML_SetProcessingInstructionHandler(parser, nil)
+    XML_SetCommentHandler           (parser, nil)
+    XML_SetCdataSectionHandler      (parser, nil, nil)
+    XML_SetDefaultHandler           (parser, nil)
+    XML_SetDefaultHandlerExpand     (parser, nil)
+    XML_SetDoctypeDeclHandler       (parser, nil, nil)
+    XML_SetUnparsedEntityDeclHandler(parser, nil)
+    XML_SetNotationDeclHandler      (parser, nil)
+    XML_SetNamespaceDeclHandler     (parser, nil, nil)
+    XML_SetNotStandaloneHandler     (parser, nil)
+    XML_SetExternalEntityRefHandler (parser, nil)
+    XML_SetSkippedEntityHandler     (parser, nil)
+    XML_SetUnknownEncodingHandler   (parser, nil, nil)
   }
   
   
@@ -56,8 +82,7 @@ class Expat : OutputStream {
   
   func onStartElement(cb: ( String, [ String : String ] ) -> Void) -> Self {
     XML_SetStartElementHandler(parser) {
-      // void *userData, const XML_Char *name, const XML_Char **atts
-      ( userData, name, attrs ) in
+      _, name, attrs in
       let sName = String.fromCString(name)! // unwrap, must be set
       
       var sAttrs = [ String : String]()
@@ -74,6 +99,32 @@ class Expat : OutputStream {
       cb(sName, sAttrs)
     }
     
+    return self
+  }
+  
+  func onEndElement(cb: ( String ) -> Void) -> Self {
+    XML_SetEndElementHandler(parser) { _, name in
+      let sName = String.fromCString(name)! // unwrap, must be set
+      cb(sName)
+    }
+    return self
+  }
+  
+  func onStartNamespace(cb: ( String?, String ) -> Void) -> Self {
+    XML_SetStartNamespaceDeclHandler(parser) {
+      _, prefix, uri in
+      let sPrefix = String.fromCString(prefix)
+      let sURI    = String.fromCString(uri)!
+      cb(sPrefix, sURI)
+    }
+    return self
+  }
+  func onEndNamespace(cb: ( String? ) -> Void) -> Self {
+    XML_SetEndNamespaceDeclHandler(parser) {
+      _, prefix in
+      let sPrefix = String.fromCString(prefix)
+      cb(sPrefix)
+    }
     return self
   }
   
