@@ -147,7 +147,7 @@ struct XML_cp {
    description of the model argument. It's the caller's responsibility
    to free model when finished with it.
 */
-typedef void (XMLCALL *XML_ElementDeclHandler) (void *userData,
+typedef void (XMLCALL ^XML_ElementDeclHandler) (void *userData,
                                                 const XML_Char *name,
                                                 XML_Content *model);
 
@@ -163,7 +163,7 @@ XML_SetElementDeclHandler(XML_Parser parser,
    value will be NULL in the case of "#REQUIRED". If "isrequired" is
    true and default is non-NULL, then this is a "#FIXED" default.
 */
-typedef void (XMLCALL *XML_AttlistDeclHandler) (
+typedef void (XMLCALL ^XML_AttlistDeclHandler) (
                                     void            *userData,
                                     const XML_Char  *elname,
                                     const XML_Char  *attname,

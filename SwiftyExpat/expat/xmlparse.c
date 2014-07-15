@@ -22,6 +22,10 @@
 #include <expat_config.h>
 #endif /* ndef COMPILED_FROM_DSP */
 
+#ifdef EXPAT_WITH_BLOCKS
+#include <Block.h>
+#endif
+
 #include "ascii.h"
 #include "expat.h"
 
@@ -1129,6 +1133,32 @@ destroyBindings(BINDING *bindings, XML_Parser parser)
 void XMLCALL
 XML_ParserFree(XML_Parser parser)
 {
+#ifdef EXPAT_WITH_BLOCKS
+  // Block_release seems to check for NULL
+  Block_release(startElementHandler);
+  Block_release(endElementHandler);
+  Block_release(characterDataHandler);
+  Block_release(processingInstructionHandler);
+  Block_release(commentHandler);
+  Block_release(startCdataSectionHandler);
+  Block_release(endCdataSectionHandler);
+  Block_release(defaultHandler);
+  Block_release(startDoctypeDeclHandler);
+  Block_release(endDoctypeDeclHandler);
+  Block_release(unparsedEntityDeclHandler);
+  Block_release(notationDeclHandler);
+  Block_release(startNamespaceDeclHandler);
+  Block_release(endNamespaceDeclHandler);
+  Block_release(notStandaloneHandler);
+  Block_release(externalEntityRefHandler);
+  Block_release(skippedEntityHandler);
+  Block_release(unknownEncodingHandler);
+  Block_release(elementDeclHandler);
+  Block_release(attlistDeclHandler);
+  Block_release(entityDeclHandler);
+  Block_release(xmlDeclHandler);
+#endif
+  
   TAG *tagList;
   OPEN_INTERNAL_ENTITY *entityList;
   if (parser == NULL)
@@ -1269,46 +1299,55 @@ XML_GetAttributeInfo(XML_Parser parser)
 }
 #endif
 
+#ifdef EXPAT_WITH_BLOCKS
+#  define EXPAT_SET_CALLBACK(__VAR__, __TYPE__, __ARG__) \
+(__VAR__ = (__TYPE__)Block_copy(__ARG__))
+#else
+#  define EXPAT_SET_CALLBACK(__VAR__, __TYPE__, __ARG___) (__VAR == __ARG__)
+#endif
+
+
 void XMLCALL
 XML_SetElementHandler(XML_Parser parser,
                       XML_StartElementHandler start,
                       XML_EndElementHandler end)
 {
-  startElementHandler = start;
-  endElementHandler = end;
+  EXPAT_SET_CALLBACK(startElementHandler, XML_StartElementHandler, start);
+  EXPAT_SET_CALLBACK(endElementHandler,   XML_EndElementHandler,   end);
 }
 
 void XMLCALL
 XML_SetStartElementHandler(XML_Parser parser,
                            XML_StartElementHandler start) {
-  startElementHandler = start;
+  EXPAT_SET_CALLBACK(startElementHandler, XML_StartElementHandler, start);
 }
 
 void XMLCALL
 XML_SetEndElementHandler(XML_Parser parser,
                          XML_EndElementHandler end) {
-  endElementHandler = end;
+  EXPAT_SET_CALLBACK(endElementHandler,   XML_EndElementHandler,   end);
 }
 
 void XMLCALL
 XML_SetCharacterDataHandler(XML_Parser parser,
                             XML_CharacterDataHandler handler)
 {
-  characterDataHandler = handler;
+  EXPAT_SET_CALLBACK(characterDataHandler, XML_CharacterDataHandler, handler);
 }
 
 void XMLCALL
 XML_SetProcessingInstructionHandler(XML_Parser parser,
                                     XML_ProcessingInstructionHandler handler)
 {
-  processingInstructionHandler = handler;
+  EXPAT_SET_CALLBACK(processingInstructionHandler,
+                     XML_ProcessingInstructionHandler, handler);
 }
 
 void XMLCALL
 XML_SetCommentHandler(XML_Parser parser,
                       XML_CommentHandler handler)
 {
-  commentHandler = handler;
+  EXPAT_SET_CALLBACK(commentHandler, XML_CommentHandler, handler);
 }
 
 void XMLCALL
@@ -1316,20 +1355,22 @@ XML_SetCdataSectionHandler(XML_Parser parser,
                            XML_StartCdataSectionHandler start,
                            XML_EndCdataSectionHandler end)
 {
-  startCdataSectionHandler = start;
-  endCdataSectionHandler = end;
+  EXPAT_SET_CALLBACK(startCdataSectionHandler,
+                     XML_StartCdataSectionHandler, start);
+  EXPAT_SET_CALLBACK(endCdataSectionHandler, XML_EndCdataSectionHandler, end);
 }
 
 void XMLCALL
 XML_SetStartCdataSectionHandler(XML_Parser parser,
                                 XML_StartCdataSectionHandler start) {
-  startCdataSectionHandler = start;
+  EXPAT_SET_CALLBACK(startCdataSectionHandler,
+                     XML_StartCdataSectionHandler, start);
 }
 
 void XMLCALL
 XML_SetEndCdataSectionHandler(XML_Parser parser,
                               XML_EndCdataSectionHandler end) {
-  endCdataSectionHandler = end;
+  EXPAT_SET_CALLBACK(endCdataSectionHandler, XML_EndCdataSectionHandler, end);
 }
 
 void XMLCALL
@@ -1344,7 +1385,7 @@ void XMLCALL
 XML_SetDefaultHandlerExpand(XML_Parser parser,
                             XML_DefaultHandler handler)
 {
-  defaultHandler = handler;
+  EXPAT_SET_CALLBACK(defaultHandler, XML_DefaultHandler, handler);
   defaultExpandInternalEntities = XML_TRUE;
 }
 
@@ -1353,34 +1394,35 @@ XML_SetDoctypeDeclHandler(XML_Parser parser,
                           XML_StartDoctypeDeclHandler start,
                           XML_EndDoctypeDeclHandler end)
 {
-  startDoctypeDeclHandler = start;
-  endDoctypeDeclHandler = end;
+  EXPAT_SET_CALLBACK(startDoctypeDeclHandler,XML_StartDoctypeDeclHandler,start);
+  EXPAT_SET_CALLBACK(endDoctypeDeclHandler,  XML_EndDoctypeDeclHandler,  end);
 }
 
 void XMLCALL
 XML_SetStartDoctypeDeclHandler(XML_Parser parser,
                                XML_StartDoctypeDeclHandler start) {
-  startDoctypeDeclHandler = start;
+  EXPAT_SET_CALLBACK(startDoctypeDeclHandler,XML_StartDoctypeDeclHandler,start);
 }
 
 void XMLCALL
 XML_SetEndDoctypeDeclHandler(XML_Parser parser,
                              XML_EndDoctypeDeclHandler end) {
-  endDoctypeDeclHandler = end;
+  EXPAT_SET_CALLBACK(endDoctypeDeclHandler,  XML_EndDoctypeDeclHandler,  end);
 }
 
 void XMLCALL
 XML_SetUnparsedEntityDeclHandler(XML_Parser parser,
                                  XML_UnparsedEntityDeclHandler handler)
 {
-  unparsedEntityDeclHandler = handler;
+  EXPAT_SET_CALLBACK(unparsedEntityDeclHandler,
+                     XML_UnparsedEntityDeclHandler, handler);
 }
 
 void XMLCALL
 XML_SetNotationDeclHandler(XML_Parser parser,
                            XML_NotationDeclHandler handler)
 {
-  notationDeclHandler = handler;
+  EXPAT_SET_CALLBACK(notationDeclHandler, XML_NotationDeclHandler, handler);
 }
 
 void XMLCALL
@@ -1388,34 +1430,37 @@ XML_SetNamespaceDeclHandler(XML_Parser parser,
                             XML_StartNamespaceDeclHandler start,
                             XML_EndNamespaceDeclHandler end)
 {
-  startNamespaceDeclHandler = start;
-  endNamespaceDeclHandler = end;
+  EXPAT_SET_CALLBACK(startNamespaceDeclHandler,
+                     XML_StartNamespaceDeclHandler, start);
+  EXPAT_SET_CALLBACK(endNamespaceDeclHandler, XML_EndNamespaceDeclHandler, end);
 }
 
 void XMLCALL
 XML_SetStartNamespaceDeclHandler(XML_Parser parser,
                                  XML_StartNamespaceDeclHandler start) {
-  startNamespaceDeclHandler = start;
+  EXPAT_SET_CALLBACK(startNamespaceDeclHandler,
+                     XML_StartNamespaceDeclHandler, start);
 }
 
 void XMLCALL
 XML_SetEndNamespaceDeclHandler(XML_Parser parser,
                                XML_EndNamespaceDeclHandler end) {
-  endNamespaceDeclHandler = end;
+  EXPAT_SET_CALLBACK(endNamespaceDeclHandler, XML_EndNamespaceDeclHandler, end);
 }
 
 void XMLCALL
 XML_SetNotStandaloneHandler(XML_Parser parser,
                             XML_NotStandaloneHandler handler)
 {
-  notStandaloneHandler = handler;
+  EXPAT_SET_CALLBACK(notStandaloneHandler, XML_NotStandaloneHandler, handler);
 }
 
 void XMLCALL
 XML_SetExternalEntityRefHandler(XML_Parser parser,
                                 XML_ExternalEntityRefHandler handler)
 {
-  externalEntityRefHandler = handler;
+  EXPAT_SET_CALLBACK(externalEntityRefHandler,
+                     XML_ExternalEntityRefHandler, handler);
 }
 
 void XMLCALL
@@ -1431,7 +1476,7 @@ void XMLCALL
 XML_SetSkippedEntityHandler(XML_Parser parser,
                             XML_SkippedEntityHandler handler)
 {
-  skippedEntityHandler = handler;
+  EXPAT_SET_CALLBACK(skippedEntityHandler, XML_SkippedEntityHandler, handler);
 }
 
 void XMLCALL
@@ -1439,7 +1484,7 @@ XML_SetUnknownEncodingHandler(XML_Parser parser,
                               XML_UnknownEncodingHandler handler,
                               void *data)
 {
-  unknownEncodingHandler = handler;
+  EXPAT_SET_CALLBACK(unknownEncodingHandler,XML_UnknownEncodingHandler,handler);
   unknownEncodingHandlerData = data;
 }
 
@@ -1447,27 +1492,27 @@ void XMLCALL
 XML_SetElementDeclHandler(XML_Parser parser,
                           XML_ElementDeclHandler eldecl)
 {
-  elementDeclHandler = eldecl;
+  EXPAT_SET_CALLBACK(elementDeclHandler, XML_ElementDeclHandler, eldecl);
 }
 
 void XMLCALL
 XML_SetAttlistDeclHandler(XML_Parser parser,
                           XML_AttlistDeclHandler attdecl)
 {
-  attlistDeclHandler = attdecl;
+  EXPAT_SET_CALLBACK(attlistDeclHandler, XML_AttlistDeclHandler, attdecl);
 }
 
 void XMLCALL
 XML_SetEntityDeclHandler(XML_Parser parser,
                          XML_EntityDeclHandler handler)
 {
-  entityDeclHandler = handler;
+  EXPAT_SET_CALLBACK(entityDeclHandler, XML_EntityDeclHandler, handler);
 }
 
 void XMLCALL
 XML_SetXmlDeclHandler(XML_Parser parser,
                       XML_XmlDeclHandler handler) {
-  xmlDeclHandler = handler;
+  EXPAT_SET_CALLBACK(xmlDeclHandler, XML_XmlDeclHandler, handler);
 }
 
 int XMLCALL
