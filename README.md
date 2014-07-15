@@ -20,11 +20,11 @@ block based Expat is reasonably easy to use from Swift.
 
 ```Swift
 let p = Expat()
-  .onStartElement   { name, attrs in println("<\(name) \(attrs)") }
-  .onEndElement     { name        in println(">\(name)")          }
+  .onStartElement   { name, attrs in println("<\(name) \(attrs)")       }
+  .onEndElement     { name        in println(">\(name)")                }
   .onStartNamespace { prefix, uri in println("+NS[\(prefix)] = \(uri)") }
-  .onEndNamespace   { prefix      in println("-NS[\(prefix)]")    }
-  .onError          { error       in println("ERROR: \(error)")   }
+  .onEndNamespace   { prefix      in println("-NS[\(prefix)]")          }
+  .onError          { error       in println("ERROR: \(error)")         }
 p.write("<hello>world</hello>")
 p.close()
 ```

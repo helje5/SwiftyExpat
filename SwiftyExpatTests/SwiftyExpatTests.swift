@@ -18,12 +18,12 @@ class SwiftyExpatTests: XCTestCase {
     super.setUp()
     
     p = Expat()
-      .onStartElement   { name, attrs in println("<\(name) \(attrs)") }
-      .onEndElement     { name        in println(">\(name)")          }
+      .onStartElement   { name, attrs in println("<\(name) \(attrs)")       }
+      .onEndElement     { name        in println(">\(name)")                }
       .onStartNamespace { prefix, uri in println("+NS[\(prefix)] = \(uri)") }
-      .onEndNamespace   { prefix      in println("-NS[\(prefix)]")    }
-      .onCharacterData  { content     in println("TEXT: \(content)")  }
-      .onError          { error       in println("ERROR \(error)")    }
+      .onEndNamespace   { prefix      in println("-NS[\(prefix)]")          }
+      .onCharacterData  { content     in println("TEXT: \(content)")        }
+      .onError          { error       in println("ERROR \(error)")          }
   }
   
   override func tearDown() {
