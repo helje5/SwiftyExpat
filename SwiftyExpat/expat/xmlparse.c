@@ -1133,6 +1133,11 @@ destroyBindings(BINDING *bindings, XML_Parser parser)
 void XMLCALL
 XML_ParserFree(XML_Parser parser)
 {
+  TAG *tagList;
+  OPEN_INTERNAL_ENTITY *entityList;
+  if (parser == NULL)
+    return;
+  
 #ifdef EXPAT_WITH_BLOCKS
   // Block_release seems to check for NULL
   Block_release(startElementHandler);
@@ -1159,10 +1164,6 @@ XML_ParserFree(XML_Parser parser)
   Block_release(xmlDeclHandler);
 #endif
   
-  TAG *tagList;
-  OPEN_INTERNAL_ENTITY *entityList;
-  if (parser == NULL)
-    return;
   /* free tagStack and freeTagList */
   tagList = tagStack;
   for (;;) {
