@@ -43,12 +43,24 @@ struct Expat : OutputStream {
   
   /* callbacks */
   
-  func onStartElement(cb: ( String ) -> Void) {
+  func onStartElement(cb: ( String, [ String : String ] ) -> Void) {
     XML_SetStartElementHandler(parser, {
       // void *userData, const XML_Char *name, const XML_Char **atts
       ( userData, name, attrs ) in
       let sName = String.fromCString(name)! // unwrap, must be set
-      cb(sName)
+      
+      var sAttrs = [ String : String]()
+      if attrs != nil {
+        var i = 0
+        while attrs[i] { // Note: you cannot compare it with nil?!
+          let name  = String.fromCString(attrs[i])
+          let value = String.fromCString(attrs[i + 1])
+          sAttrs[name!] = value! // force unwrap
+          i += 2
+        }
+      }
+      
+      cb(sName, sAttrs)
     })
   }
 }
@@ -58,7 +70,7 @@ func testit() {
   
   var p = Expat()
   
-  p.onStartElement { name in println("name: \(name)") }
+  p.onStartElement { name, attrs in println("name: \(name) \(attrs)") }
 
   let testXML = "<hello a='5'><x>world</x></hello>"
   p.write(testXML)
