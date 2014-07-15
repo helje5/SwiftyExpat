@@ -8,25 +8,61 @@
 
 import Foundation
 
+class Expat : OutputStream {
+  
+  let parser : XML_Parser
+  
+  init(encoding: String = "UTF-8", nsSeparator: Character = ":") {
+    let sepUTF8   = ("" + nsSeparator).utf8
+    let separator = sepUTF8[sepUTF8.startIndex]
+    
+    var newParser : XML_Parser = nil
+    encoding.withCString { cs in
+      // if I use parser, swiftc crashes
+      // FIXME: use String for separator, and codepoints to get the Int?
+      newParser = XML_ParserCreateNS(cs, 58 /* ':' */)
+    }
+    assert(newParser != nil)
+    
+    parser = newParser
+  }
+  
+  
+  /* feed the parser */
+  
+  func write(cs: CString) {
+    let cslen   = strlen(cs)
+    let isFinal = cslen == 0
+    XML_Parse(parser, cs, Int32(cslen), isFinal ? 1 : 0)
+  }
+  
+  func write(s: String) {
+    s.withCString { cs in self.write(cs) }
+  }
+ 
+  
+  /* callbacks */
+  
+  func onStartElement(cb: ( String ) -> Void) {
+    XML_SetStartElementHandler(parser, {
+      // void *userData, const XML_Char *name, const XML_Char **atts
+      ( userData, name, attrs ) in
+      let sName = String.fromCString(name)! // unwrap, must be set
+      cb(sName)
+    })
+  }
+}
+
 func testit() {
   println("testing it ...")
   
-  var p : XML_Parser = nil
+  var p = Expat()
   
-  "UTF-8".withCString { cs in
-    p = XML_ParserCreateNS(cs, 58 /* ':' */)
-  }
-  
-  XML_SetStartElementHandler(p, {
-    // void *userData, const XML_Char *name, const XML_Char **atts
-    ( userData, name, attrs ) in
-    println("name: \(name) \(attrs)")
-  })
+  p.onStartElement { name in println("name: \(name)") }
 
-  let testXML = "<hello>world</hello>"
-  testXML.withCString { cs in
-    XML_Parse(p, cs, Int32(strlen(cs)), 1)
-  }
+  let testXML = "<hello a='5'><x>world</x></hello>"
+  p.write(testXML)
+  p.write("") // EOF
   
   // XML_SetElementHandler(p, startCB, endCB)
 }
