@@ -8,23 +8,6 @@
 
 import Foundation
 
-/*
-typedef void (XMLCALL *XML_StartElementHandler) (void *userData,
-  const XML_Char *name,
-  const XML_Char **atts);
-*/
-func startCB(ud: COpaquePointer, name: CString, attrs: UnsafePointer<CString>) {
-  
-}
-
-/*
-typedef void (XMLCALL *XML_EndElementHandler) (void *userData,
-const XML_Char *name);
-*/
-func endCB(ud: COpaquePointer, name: CString) {
-  
-}
-
 func testit() {
   println("testing it ...")
   
@@ -32,6 +15,17 @@ func testit() {
   
   "UTF-8".withCString { cs in
     p = XML_ParserCreateNS(cs, 58 /* ':' */)
+  }
+  
+  XML_SetStartElementHandler(p, {
+    // void *userData, const XML_Char *name, const XML_Char **atts
+    ( userData, name, attrs ) in
+    println("name: \(name) \(attrs)")
+  })
+
+  let testXML = "<hello>world</hello>"
+  testXML.withCString { cs in
+    XML_Parse(p, cs, Int32(strlen(cs)), 1)
   }
   
   // XML_SetElementHandler(p, startCB, endCB)
