@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E8C667EC19757405004EFA0C /* Expat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C667EB19757405004EFA0C /* Expat.swift */; };
+		E8C667EE19757B9D004EFA0C /* SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C667ED19757B9D004EFA0C /* SwiftExtensions.swift */; };
 		E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77431971609A00E0557D /* SwiftyExpat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8FB77721971667F00E0557D /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB775F1971667F00E0557D /* ascii.h */; };
 		E8FB77731971667F00E0557D /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77601971667F00E0557D /* asciitab.h */; };
@@ -65,6 +66,8 @@
 
 /* Begin PBXFileReference section */
 		E8C667EB19757405004EFA0C /* Expat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expat.swift; sourceTree = "<group>"; };
+		E8C667ED19757B9D004EFA0C /* SwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExtensions.swift; sourceTree = "<group>"; };
+		E8C667EF19757C40004EFA0C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8FB773E1971609A00E0557D /* SwiftyExpat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyExpat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FB77421971609A00E0557D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FB77431971609A00E0557D /* SwiftyExpat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyExpat.h; sourceTree = "<group>"; };
@@ -72,7 +75,7 @@
 		E8FB77601971667F00E0557D /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asciitab.h; sourceTree = "<group>"; };
 		E8FB77611971667F00E0557D /* Changes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changes; sourceTree = "<group>"; };
 		E8FB77621971667F00E0557D /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		E8FB77631971667F00E0557D /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expat.h; sourceTree = "<group>"; };
+		E8FB77631971667F00E0557D /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = expat/expat.h; sourceTree = "<group>"; };
 		E8FB77641971667F00E0557D /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expat_config.h; sourceTree = "<group>"; };
 		E8FB77651971667F00E0557D /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expat_external.h; sourceTree = "<group>"; };
 		E8FB77661971667F00E0557D /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iasciitab.h; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 		E8FB77341971609A00E0557D = {
 			isa = PBXGroup;
 			children = (
+				E8C667EF19757C40004EFA0C /* README.md */,
 				E8FB77401971609A00E0557D /* SwiftyExpat */,
 				E8FB77901971767500E0557D /* SwiftyExpatTests */,
 				E8FB773F1971609A00E0557D /* Products */,
@@ -135,6 +139,8 @@
 			isa = PBXGroup;
 			children = (
 				E8C667EB19757405004EFA0C /* Expat.swift */,
+				E8C667ED19757B9D004EFA0C /* SwiftExtensions.swift */,
+				E8FB77631971667F00E0557D /* expat.h */,
 				E8FB77431971609A00E0557D /* SwiftyExpat.h */,
 				E8FB775E1971667F00E0557D /* expat */,
 				E8FB77411971609A00E0557D /* Supporting Files */,
@@ -156,7 +162,6 @@
 			children = (
 				E8FB77621971667F00E0557D /* COPYING */,
 				E8FB77611971667F00E0557D /* Changes */,
-				E8FB77631971667F00E0557D /* expat.h */,
 				E8FB7787197166E600E0557D /* char tables */,
 				E8FB779F1971E5EE00E0557D /* implementation */,
 			);
@@ -340,6 +345,7 @@
 			files = (
 				E8FB77811971667F00E0557D /* xmltok.c in Sources */,
 				E8FB777E1971667F00E0557D /* xmlparse.c in Sources */,
+				E8C667EE19757B9D004EFA0C /* SwiftExtensions.swift in Sources */,
 				E8C667EC19757405004EFA0C /* Expat.swift in Sources */,
 				E8FB777F1971667F00E0557D /* xmlrole.c in Sources */,
 			);

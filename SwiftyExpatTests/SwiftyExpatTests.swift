@@ -19,9 +19,11 @@ class SwiftyExpatTests: XCTestCase {
     
     p = Expat()
       .onStartElement   { name, attrs in println("<\(name) \(attrs)") }
-      .onEndElement     { name in println(">\(name)") }
+      .onEndElement     { name        in println(">\(name)")          }
       .onStartNamespace { prefix, uri in println("+NS[\(prefix)] = \(uri)") }
-      .onEndNamespace   { prefix      in println("-NS[\(prefix)]") }
+      .onEndNamespace   { prefix      in println("-NS[\(prefix)]")    }
+      .onCharacterData  { content     in println("TEXT: \(content)")  }
+      .onError          { error       in println("ERROR \(error)")    }
   }
   
   override func tearDown() {
@@ -31,18 +33,28 @@ class SwiftyExpatTests: XCTestCase {
   
   func testSimpleParsing() {
     XCTAssert(true, "Pass")
-
+    
+    var result  : ExpatResult
     let testXML = "<hello xmlns='YoYo' a='5'><x>world</x></hello>"
-    p.write(testXML)
-    p.close() // EOF
+    
+    result = p.feed(testXML)
+    XCTAssert(result)
+    
+    result = p.close() // EOF
+    XCTAssert(result)
   }
-  
-  /*
-  func testPerformanceExample() {
-    // This is an example of a performance test case.
-    self.measureBlock() {
-        // Put the code you want to measure the time of here.
-    }
+
+  func testErrorHandling() {
+    XCTAssert(true, "Pass")
+    
+    var result  : ExpatResult
+    let testXML = "<hello xmlns='YoYo' a='5'>x>world</x></hello>"
+    
+    result = p.feed(testXML)
+    println("Feed result: \(result)")
+    XCTAssert(!result)
+    
+    result = p.close() // EOF
+    XCTAssert(!result)
   }
-  */
 }

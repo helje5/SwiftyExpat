@@ -12,9 +12,9 @@
  *
  * Done as a class as this is no value object (and struct's have no deinit())
  */
-class Expat : OutputStream {
+class Expat : OutputStream, LogicValue {
   
-  let parser   : XML_Parser
+  var parser   : XML_Parser = nil
   var isClosed = false
   
   init(encoding: String = "UTF-8", nsSeparator: Character = ":") {
@@ -32,30 +32,64 @@ class Expat : OutputStream {
     parser = newParser
   }
   deinit {
-    println("freeing parser ...")
-    XML_ParserFree(parser)
+    if parser {
+      XML_ParserFree(parser)
+    }
+  }
+  
+  
+  /* valid? */
+  
+  func getLogicValue() -> Bool {
+    return parser != nil
   }
   
   
   /* feed the parser */
   
-  func write(cs: CString) {
-    let cslen = strlen(cs)
-    XML_Parse(parser, cs, Int32(cslen), 0)
+  func feed(cs: CString, final: Bool = false) -> ExpatResult {
+    let cslen   = cs ? strlen(cs) : 0 // cs? checks for a NULL C string
+    let isFinal : Int32 = final ? 1 : 0
+    let status  : XML_Status = XML_Parse(parser, cs, Int32(cslen), isFinal)
+    
+    switch status.value { // the Expat enum's don't work?
+      case 1: return ExpatResult.OK
+      case 2: return ExpatResult.Suspended
+      default:
+        let error = XML_GetErrorCode(parser)
+        if let cb = errorCB {
+          cb(error)
+        }
+        return ExpatResult.Error(error)
+    }
+  }
+  
+  func feed(s: String) -> ExpatResult {
+    return s.withCString { cs in self.feed(cs) }
   }
   
   func write(s: String) {
-    s.withCString { cs in self.write(cs) }
+    let result = feed(s)
+    
+    // doesn't work with associated value?: assert(ExpatResult.OK == result)
+    switch result {
+      case .OK: break
+      default: assert(false)
+    }
   }
   
-  func close() {
-    if isClosed { return }
+  func close() -> ExpatResult {
+    if isClosed { return ExpatResult.OK /* do not complain */ }
 
-    let isFinal : Int32 = 1
-    XML_Parse(parser, "", 0, isFinal)
+    let result = feed("", final: true)
     
     resetCallbacks()
     isClosed = true
+    
+    XML_ParserFree(parser)
+    parser = nil
+    
+    return result
   }
   
   func resetCallbacks() {
@@ -119,6 +153,7 @@ class Expat : OutputStream {
     }
     return self
   }
+  
   func onEndNamespace(cb: ( String? ) -> Void) -> Self {
     XML_SetEndNamespaceDeclHandler(parser) {
       _, prefix in
@@ -128,4 +163,65 @@ class Expat : OutputStream {
     return self
   }
   
+  func onCharacterData(cb: ( String ) -> Void) -> Self {
+    //const XML_Char *s, int len);
+    XML_SetCharacterDataHandler(parser) {
+      _, cs, cslen in
+      assert(cslen > 0)
+      if cslen > 0 {
+        let s = String.fromCString(cs, length: Int(cslen))!
+        cb(s)
+      }
+    }
+    return self
+  }
+  
+  func onError(cb: ( XML_Error ) -> Void) -> Self {
+    errorCB = cb
+    return self
+  }
+  var errorCB : (( XML_Error ) -> Void)? = nil
+}
+
+extension XML_Error : Printable {
+  
+  var description: String {
+    switch self.value {
+      // doesn't work?: case .XML_ERROR_NONE: return "OK"
+      case 0 /* XML_ERROR_NONE           */: return "OK"
+      case 1 /* XML_ERROR_NO_MEMORY      */: return "XMLError::NoMemory"
+      case 2 /* XML_ERROR_SYNTAX         */: return "XMLError::Syntax"
+      case 3 /* XML_ERROR_NO_ELEMENTS    */: return "XMLError::NoElements"
+      case 4 /* XML_ERROR_INVALID_TOKEN  */: return "XMLError::InvalidToken"
+      case 5 /* XML_ERROR_UNCLOSED_TOKEN */: return "XMLError::UnclosedToken"
+      case 6 /* XML_ERROR_PARTIAL_CHAR   */: return "XMLError::PartialChar"
+      case 7 /* XML_ERROR_TAG_MISMATCH   */: return "XMLError::TagMismatch"
+      case 8 /* XML_ERROR_DUPLICATE_ATTRIBUTE */: return "XMLError::DupeAttr"
+      // FIXME: complete me
+      default:
+        return "XMLError(\(self.value))"
+    }
+  }
+}
+
+enum ExpatResult : Printable, LogicValue {
+  
+  case OK
+  case Suspended
+  case Error(XML_Error) // we cannot make this XML_Error, fails swiftc
+  
+  var description: String {
+    switch self {
+      case .OK:               return "OK"
+      case .Suspended:        return "Suspended"
+      case .Error(let error): return "XMLError(\(error))"
+    }
+  }
+  
+  func getLogicValue() -> Bool {
+    switch self {
+      case .OK: return true
+      default:  return false
+    }
+  }
 }
