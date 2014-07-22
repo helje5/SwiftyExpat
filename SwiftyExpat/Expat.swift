@@ -47,7 +47,7 @@ class Expat : OutputStream, LogicValue {
   
   /* feed the parser */
   
-  func feed(cs: CString, final: Bool = false) -> ExpatResult {
+  func feed(cs: ConstUnsafePointer<CChar>, final: Bool = false) -> ExpatResult {
     let cslen   = cs ? strlen(cs) : 0 // cs? checks for a NULL C string
     let isFinal : Int32 = final ? 1 : 0
     let status  : XML_Status = XML_Parse(parser, cs, Int32(cslen), isFinal)
@@ -62,10 +62,6 @@ class Expat : OutputStream, LogicValue {
         }
         return ExpatResult.Error(error)
     }
-  }
-  
-  func feed(s: String) -> ExpatResult {
-    return s.withCString { cs in self.feed(cs) }
   }
   
   func write(s: String) {
