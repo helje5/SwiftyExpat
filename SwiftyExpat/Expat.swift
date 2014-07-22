@@ -12,12 +12,12 @@
  *
  * Done as a class as this is no value object (and struct's have no deinit())
  */
-class Expat : OutputStream, LogicValue {
+public class Expat : OutputStream, LogicValue {
   
   var parser   : XML_Parser = nil
   var isClosed = false
   
-  init(encoding: String = "UTF-8", nsSeparator: Character = ":") {
+  public init(encoding: String = "UTF-8", nsSeparator: Character = ":") {
     let sepUTF8   = ("" + nsSeparator).utf8
     let separator = sepUTF8[sepUTF8.startIndex]
     
@@ -40,21 +40,27 @@ class Expat : OutputStream, LogicValue {
   
   /* valid? */
   
-  func getLogicValue() -> Bool {
+  public func getLogicValue() -> Bool {
     return parser != nil
   }
   
   
   /* feed the parser */
   
-  func feed(cs: CString, final: Bool = false) -> ExpatResult {
+  public func feedRaw
+    (cs: ConstUnsafePointer<CChar>, final: Bool = false) -> ExpatResult
+  {
+    // v4: for some reason this accepts a 'String', but for such it doesn't
+    //     actually work
     let cslen   = cs ? strlen(cs) : 0 // cs? checks for a NULL C string
-    let isFinal : Int32 = final ? 1 : 0
+    let isFinal : Int32      = final ? 1 : 0
+    
+    //dumpCharBuf(cs, Int(cslen))
     let status  : XML_Status = XML_Parse(parser, cs, Int32(cslen), isFinal)
     
-    switch status.value { // the Expat enum's don't work?
-      case 1: return ExpatResult.OK
-      case 2: return ExpatResult.Suspended
+    switch status { // the Expat enum's don't work?
+      case XML_STATUS_OK:        return ExpatResult.OK
+      case XML_STATUS_SUSPENDED: return ExpatResult.Suspended
       default:
         let error = XML_GetErrorCode(parser)
         if let cb = errorCB {
@@ -63,13 +69,15 @@ class Expat : OutputStream, LogicValue {
         return ExpatResult.Error(error)
     }
   }
-  
-  func feed(s: String) -> ExpatResult {
-    return s.withCString { cs in self.feed(cs) }
+  public func feed(s: String, final: Bool = false) -> ExpatResult {
+    return s.withCString {
+      (cs: ConstUnsafePointer<CChar>) -> ExpatResult in
+      return self.feedRaw(cs, final: final)
+    }
   }
   
-  func write(s: String) {
-    let result = feed(s)
+  public func write(s: String) {
+    let result = self.feed(s)
     
     // doesn't work with associated value?: assert(ExpatResult.OK == result)
     switch result {
@@ -78,7 +86,7 @@ class Expat : OutputStream, LogicValue {
     }
   }
   
-  func close() -> ExpatResult {
+  public func close() -> ExpatResult {
     if isClosed { return ExpatResult.OK /* do not complain */ }
 
     let result = feed("", final: true)
@@ -114,7 +122,7 @@ class Expat : OutputStream, LogicValue {
   
   /* callbacks */
   
-  func onStartElement(cb: ( String, [ String : String ] ) -> Void) -> Self {
+  public func onStartElement(cb: ( String, [String : String] ) -> Void)-> Self {
     XML_SetStartElementHandler(parser) {
       _, name, attrs in
       let sName = String.fromCString(name)! // unwrap, must be set
@@ -136,7 +144,7 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onEndElement(cb: ( String ) -> Void) -> Self {
+  public func onEndElement(cb: ( String ) -> Void) -> Self {
     XML_SetEndElementHandler(parser) { _, name in
       let sName = String.fromCString(name)! // unwrap, must be set
       cb(sName)
@@ -144,7 +152,7 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onStartNamespace(cb: ( String?, String ) -> Void) -> Self {
+  public func onStartNamespace(cb: ( String?, String ) -> Void) -> Self {
     XML_SetStartNamespaceDeclHandler(parser) {
       _, prefix, uri in
       let sPrefix = String.fromCString(prefix)
@@ -154,7 +162,7 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onEndNamespace(cb: ( String? ) -> Void) -> Self {
+  public func onEndNamespace(cb: ( String? ) -> Void) -> Self {
     XML_SetEndNamespaceDeclHandler(parser) {
       _, prefix in
       let sPrefix = String.fromCString(prefix)
@@ -163,54 +171,85 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onCharacterData(cb: ( String ) -> Void) -> Self {
+  public func onCharacterData(cb: ( String ) -> Void) -> Self {
     //const XML_Char *s, int len);
     XML_SetCharacterDataHandler(parser) {
       _, cs, cslen in
       assert(cslen > 0)
+      assert(cs    != nil)
+      println("CS: \(cs[0]) len \(cslen)")
       if cslen > 0 {
-        let s = String.fromCString(cs, length: Int(cslen))!
-        cb(s)
+        if let s = String.fromCString(cs, length: Int(cslen)) {
+          cb(s)
+        }
+        else {
+          println("ERROR: could not convert CString to String?! (len=\(cslen))")
+          dumpCharBuf(cs, Int(cslen))
+        }
       }
     }
     return self
   }
   
-  func onError(cb: ( XML_Error ) -> Void) -> Self {
+  public func onError(cb: ( XML_Error ) -> Void) -> Self {
     errorCB = cb
     return self
   }
   var errorCB : (( XML_Error ) -> Void)? = nil
 }
 
+
+/* hack to make some structs work */
+// FIXME: can't figure out how to access XML_Error. Maybe because it
+//        is not 'public'?
+
+extension XML_Error : Equatable {
+  // struct: init(_ value: UInt32); var value: UInt32;
+}
+extension XML_Status : Equatable {
+  // struct: init(_ value: UInt32); var value: UInt32;
+}
+public func ==(lhs: XML_Error, rhs: XML_Error) -> Bool {
+  // this just recurses (of course):
+  //   return lhs == rhs
+  // this failes, maybe because it's not public?:
+  //   return lhs.value == rhs.value
+  // Hard hack, does it actually work? :-)
+  return isByteEqual(lhs, rhs)
+}
+public func ==(lhs: XML_Status, rhs: XML_Status) -> Bool {
+  return isByteEqual(lhs, rhs)
+}
+
+
 extension XML_Error : Printable {
   
-  var description: String {
-    switch self.value {
+  public var description: String {
+    switch self {
       // doesn't work?: case .XML_ERROR_NONE: return "OK"
-      case 0 /* XML_ERROR_NONE           */: return "OK"
-      case 1 /* XML_ERROR_NO_MEMORY      */: return "XMLError::NoMemory"
-      case 2 /* XML_ERROR_SYNTAX         */: return "XMLError::Syntax"
-      case 3 /* XML_ERROR_NO_ELEMENTS    */: return "XMLError::NoElements"
-      case 4 /* XML_ERROR_INVALID_TOKEN  */: return "XMLError::InvalidToken"
-      case 5 /* XML_ERROR_UNCLOSED_TOKEN */: return "XMLError::UnclosedToken"
-      case 6 /* XML_ERROR_PARTIAL_CHAR   */: return "XMLError::PartialChar"
-      case 7 /* XML_ERROR_TAG_MISMATCH   */: return "XMLError::TagMismatch"
-      case 8 /* XML_ERROR_DUPLICATE_ATTRIBUTE */: return "XMLError::DupeAttr"
+      case XML_ERROR_NONE:                return "OK"
+      case XML_ERROR_NO_MEMORY:           return "XMLError::NoMemory"
+      case XML_ERROR_SYNTAX:              return "XMLError::Syntax"
+      case XML_ERROR_NO_ELEMENTS:         return "XMLError::NoElements"
+      case XML_ERROR_INVALID_TOKEN:       return "XMLError::InvalidToken"
+      case XML_ERROR_UNCLOSED_TOKEN:      return "XMLError::UnclosedToken"
+      case XML_ERROR_PARTIAL_CHAR:        return "XMLError::PartialChar"
+      case XML_ERROR_TAG_MISMATCH:        return "XMLError::TagMismatch"
+      case XML_ERROR_DUPLICATE_ATTRIBUTE: return "XMLError::DupeAttr"
       // FIXME: complete me
       default:
-        return "XMLError(\(self.value))"
+        return "XMLError(\(self))"
     }
   }
 }
 
-enum ExpatResult : Printable, LogicValue {
+public enum ExpatResult : Printable, LogicValue {
   
   case OK
   case Suspended
   case Error(XML_Error) // we cannot make this XML_Error, fails swiftc
   
-  var description: String {
+  public var description: String {
     switch self {
       case .OK:               return "OK"
       case .Suspended:        return "Suspended"
@@ -218,10 +257,23 @@ enum ExpatResult : Printable, LogicValue {
     }
   }
   
-  func getLogicValue() -> Bool {
+  public func getLogicValue() -> Bool {
     switch self {
       case .OK: return true
       default:  return false
     }
   }
+}
+
+
+/* debug */
+
+func dumpCharBuf(buf: ConstUnsafePointer<CChar>, len : Int) {
+  println("*-- buffer (len=\(len))")
+  for var i = 0; i < len; i++ {
+    let cp = Int(buf[i])
+    let c  = Character(UnicodeScalar(cp))
+    println("  [\(i)]: \(cp) \(c)")
+  }
+  println("---")
 }

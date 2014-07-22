@@ -16,4 +16,5 @@ FOUNDATION_EXPORT const unsigned char SwiftyExpatVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SwiftyExpat/PublicHeader.h>
 
-
+// No more bridging header in v0.0.4, need to make all C stuff public
+#import <SwiftyExpat/expat.h>
