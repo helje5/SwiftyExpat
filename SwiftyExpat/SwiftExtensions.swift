@@ -34,7 +34,7 @@ extension String {
     let s   = String.fromCString(cs)
     unconst[length] = old
     
-    return nil
+    return s
   }
 
 }
