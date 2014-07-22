@@ -12,23 +12,22 @@
 
 extension String {
   
-  static func fromCString(cs: CString, length: Int?) -> String? {
+  static func fromCString
+    (cs: ConstUnsafePointer<CChar>, length: Int!) -> String?
+  {
     if length == .None { // no length given, use \0 standard variant
       return String.fromCString(cs)
     }
     
     // hh: this is really lame, there must be a better way :-)
-    // Also: it could be a constant string! So we probably need to copy ...
-    if let buf = cs.persist() {
-      return buf.withUnsafePointerToElements {
-        (p: UnsafePointer<CChar>) in
-        let old = p[length!]
-        p[length!] = 0
-        let s = String.fromCString(CString(p))
-        p[length!] = old
-        return s
-      }
-    }
+    // Also: it could be a constant string! So we really need to copy ...
+    // NOTE: this is really really wrong, don't use it in actual projects! :-)
+    let unconst = UnsafePointer<CChar>(cs)
+    let old = cs[length]
+    unconst[length] = 0
+    let s   = String.fromCString(cs)
+    unconst[length] = old
+    
     return nil
   }
 
