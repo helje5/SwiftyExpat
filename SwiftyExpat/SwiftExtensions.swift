@@ -10,6 +10,12 @@
 // I would be very interested in better way to do those things, W/O using
 // Foundation.
 
+// Hack to compare values if we don't have access to the members of the struct,
+// eg XML_Error in v0.0.4
+public func isByteEqual<T>(var lhs: T, var rhs: T) -> Bool {
+  return memcmp(&lhs, &rhs, UInt(sizeof(T))) == 0
+}
+
 extension String {
   
   static func fromCString
