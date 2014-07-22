@@ -12,12 +12,12 @@
  *
  * Done as a class as this is no value object (and struct's have no deinit())
  */
-class Expat : OutputStream, LogicValue {
+public class Expat : OutputStream, LogicValue {
   
   var parser   : XML_Parser = nil
   var isClosed = false
   
-  init(encoding: String = "UTF-8", nsSeparator: Character = ":") {
+  public init(encoding: String = "UTF-8", nsSeparator: Character = ":") {
     let sepUTF8   = ("" + nsSeparator).utf8
     let separator = sepUTF8[sepUTF8.startIndex]
     
@@ -40,14 +40,16 @@ class Expat : OutputStream, LogicValue {
   
   /* valid? */
   
-  func getLogicValue() -> Bool {
+  public func getLogicValue() -> Bool {
     return parser != nil
   }
   
   
   /* feed the parser */
   
-  func feed(cs: ConstUnsafePointer<CChar>, final: Bool = false) -> ExpatResult {
+  public func feed
+    (cs: ConstUnsafePointer<CChar>, final: Bool = false) -> ExpatResult
+  {
     let cslen   = cs ? strlen(cs) : 0 // cs? checks for a NULL C string
     let isFinal : Int32 = final ? 1 : 0
     let status  : XML_Status = XML_Parse(parser, cs, Int32(cslen), isFinal)
@@ -64,7 +66,7 @@ class Expat : OutputStream, LogicValue {
     }
   }
   
-  func write(s: String) {
+  public func write(s: String) {
     let result = feed(s)
     
     // doesn't work with associated value?: assert(ExpatResult.OK == result)
@@ -74,7 +76,7 @@ class Expat : OutputStream, LogicValue {
     }
   }
   
-  func close() -> ExpatResult {
+  public func close() -> ExpatResult {
     if isClosed { return ExpatResult.OK /* do not complain */ }
 
     let result = feed("", final: true)
@@ -110,7 +112,7 @@ class Expat : OutputStream, LogicValue {
   
   /* callbacks */
   
-  func onStartElement(cb: ( String, [ String : String ] ) -> Void) -> Self {
+  public func onStartElement(cb: ( String, [String : String] ) -> Void)-> Self {
     XML_SetStartElementHandler(parser) {
       _, name, attrs in
       let sName = String.fromCString(name)! // unwrap, must be set
@@ -132,7 +134,7 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onEndElement(cb: ( String ) -> Void) -> Self {
+  public func onEndElement(cb: ( String ) -> Void) -> Self {
     XML_SetEndElementHandler(parser) { _, name in
       let sName = String.fromCString(name)! // unwrap, must be set
       cb(sName)
@@ -140,7 +142,7 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onStartNamespace(cb: ( String?, String ) -> Void) -> Self {
+  public func onStartNamespace(cb: ( String?, String ) -> Void) -> Self {
     XML_SetStartNamespaceDeclHandler(parser) {
       _, prefix, uri in
       let sPrefix = String.fromCString(prefix)
@@ -150,7 +152,7 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onEndNamespace(cb: ( String? ) -> Void) -> Self {
+  public func onEndNamespace(cb: ( String? ) -> Void) -> Self {
     XML_SetEndNamespaceDeclHandler(parser) {
       _, prefix in
       let sPrefix = String.fromCString(prefix)
@@ -159,7 +161,7 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onCharacterData(cb: ( String ) -> Void) -> Self {
+  public func onCharacterData(cb: ( String ) -> Void) -> Self {
     //const XML_Char *s, int len);
     XML_SetCharacterDataHandler(parser) {
       _, cs, cslen in
@@ -172,7 +174,7 @@ class Expat : OutputStream, LogicValue {
     return self
   }
   
-  func onError(cb: ( XML_Error ) -> Void) -> Self {
+  public func onError(cb: ( XML_Error ) -> Void) -> Self {
     errorCB = cb
     return self
   }
@@ -181,7 +183,7 @@ class Expat : OutputStream, LogicValue {
 
 extension XML_Error : Printable {
   
-  var description: String {
+  public var description: String {
     switch self.value {
       // doesn't work?: case .XML_ERROR_NONE: return "OK"
       case 0 /* XML_ERROR_NONE           */: return "OK"
@@ -200,13 +202,13 @@ extension XML_Error : Printable {
   }
 }
 
-enum ExpatResult : Printable, LogicValue {
+public enum ExpatResult : Printable, LogicValue {
   
   case OK
   case Suspended
   case Error(XML_Error) // we cannot make this XML_Error, fails swiftc
   
-  var description: String {
+  public var description: String {
     switch self {
       case .OK:               return "OK"
       case .Suspended:        return "Suspended"
@@ -214,7 +216,7 @@ enum ExpatResult : Printable, LogicValue {
     }
   }
   
-  func getLogicValue() -> Bool {
+  public func getLogicValue() -> Bool {
     switch self {
       case .OK: return true
       default:  return false
