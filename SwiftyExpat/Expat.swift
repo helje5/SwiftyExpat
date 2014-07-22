@@ -54,7 +54,8 @@ public class Expat : OutputStream, LogicValue {
     //     actually work
     let cslen   = cs ? strlen(cs) : 0 // cs? checks for a NULL C string
     let isFinal : Int32      = final ? 1 : 0
-    println("CS is \(cs) len \(cslen)")
+    
+    //dumpCharBuf(cs, Int(cslen))
     let status  : XML_Status = XML_Parse(parser, cs, Int32(cslen), isFinal)
     
     switch status { // the Expat enum's don't work?
@@ -183,7 +184,7 @@ public class Expat : OutputStream, LogicValue {
         }
         else {
           println("ERROR: could not convert CString to String?! (len=\(cslen))")
-          println("buf \(cs.memory)")
+          dumpCharBuf(cs, Int(cslen))
         }
       }
     }
@@ -262,4 +263,17 @@ public enum ExpatResult : Printable, LogicValue {
       default:  return false
     }
   }
+}
+
+
+/* debug */
+
+func dumpCharBuf(buf: ConstUnsafePointer<CChar>, len : Int) {
+  println("*-- buffer (len=\(len))")
+  for var i = 0; i < len; i++ {
+    let cp = Int(buf[i])
+    let c  = Character(UnicodeScalar(cp))
+    println("  [\(i)]: \(cp) \(c)")
+  }
+  println("---")
 }
