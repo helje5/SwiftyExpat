@@ -10,26 +10,31 @@
 // I would be very interested in better way to do those things, W/O using
 // Foundation.
 
+// Hack to compare values if we don't have access to the members of the struct,
+// eg XML_Error in v0.0.4
+public func isByteEqual<T>(var lhs: T, var rhs: T) -> Bool {
+  return memcmp(&lhs, &rhs, UInt(sizeof(T))) == 0
+}
+
 extension String {
   
-  static func fromCString(cs: CString, length: Int?) -> String? {
+  static func fromCString
+    (cs: ConstUnsafePointer<CChar>, length: Int!) -> String?
+  {
     if length == .None { // no length given, use \0 standard variant
       return String.fromCString(cs)
     }
     
     // hh: this is really lame, there must be a better way :-)
-    // Also: it could be a constant string! So we probably need to copy ...
-    if let buf = cs.persist() {
-      return buf.withUnsafePointerToElements {
-        (p: UnsafePointer<CChar>) in
-        let old = p[length!]
-        p[length!] = 0
-        let s = String.fromCString(CString(p))
-        p[length!] = old
-        return s
-      }
-    }
-    return nil
+    // Also: it could be a constant string! So we really need to copy ...
+    // NOTE: this is really really wrong, don't use it in actual projects! :-)
+    let unconst = UnsafePointer<CChar>(cs)
+    let old = cs[length]
+    unconst[length] = 0
+    let s   = String.fromCString(cs)
+    unconst[length] = old
+    
+    return s
   }
 
 }
