@@ -11,21 +11,32 @@
  * reasonably easy to use as-is.
  *
  * Done as a class as this is no value object (and struct's have no deinit())
+ *
+ * Sample:
+ *  let p = Expat()
+ *    .onStartElement   { name, attrs in println("<\(name) \(attrs)")       }
+ *    .onEndElement     { name        in println(">\(name)")                }
+ *    .onError          { error       in println("ERROR: \(error)")         }
+ *  p.write("<hello>world</hello>")
+ *  p.close()
  */
 public class Expat : OutputStream, LogicValue {
   
-  var parser   : XML_Parser = nil
-  var isClosed = false
+  public let nsSeparator : Character
   
-  public init(encoding: String = "UTF-8", nsSeparator: Character = ":") {
-    let sepUTF8   = ("" + nsSeparator).utf8
+  var parser      : XML_Parser = nil
+  var isClosed    = false
+  
+  public init(encoding: String = "UTF-8", nsSeparator: Character = "<") {
+    self.nsSeparator = nsSeparator
+    let sepUTF8   = ("" + self.nsSeparator).utf8
     let separator = sepUTF8[sepUTF8.startIndex]
     
     var newParser : XML_Parser = nil
     encoding.withCString { cs in
       // if I use parser, swiftc crashes (if Expat is a class)
       // FIXME: use String for separator, and codepoints to get the Int?
-      newParser = XML_ParserCreateNS(cs, 58 /* ':' */)
+      newParser = XML_ParserCreateNS(cs, XML_Char(separator))
     }
     assert(newParser != nil)
     
@@ -172,12 +183,11 @@ public class Expat : OutputStream, LogicValue {
   }
   
   public func onCharacterData(cb: ( String ) -> Void) -> Self {
-    //const XML_Char *s, int len);
     XML_SetCharacterDataHandler(parser) {
       _, cs, cslen in
       assert(cslen > 0)
       assert(cs    != nil)
-      println("CS: \(cs[0]) len \(cslen)")
+      // println("CS: \(cs[0]) len \(cslen)")
       if cslen > 0 {
         if let s = String.fromCString(cs, length: Int(cslen)) {
           cb(s)
@@ -196,6 +206,29 @@ public class Expat : OutputStream, LogicValue {
     return self
   }
   var errorCB : (( XML_Error ) -> Void)? = nil
+}
+
+
+public extension Expat { // Namespaces
+  
+  public func onStartElementNS
+    (cb: ( String, String, [String : String] ) -> Void) -> Self
+  {
+    let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
+    return onStartElement {
+      let comps = split($0, { $0 == sep }, maxSplit: 1, allowEmptySlices: false)
+      cb(comps[0], comps[1], $1)
+    }
+  }
+  
+  public func onEndElementNS(cb: ( String, String ) -> Void) -> Self {
+    let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
+    return onEndElement {
+      let comps = split($0, { $0 == sep }, maxSplit: 1, allowEmptySlices: false)
+      cb(comps[0], comps[1])
+    }
+  }
+  
 }
 
 
