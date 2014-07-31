@@ -10,27 +10,26 @@
 		E8C667EC19757405004EFA0C /* Expat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C667EB19757405004EFA0C /* Expat.swift */; };
 		E8C667EE19757B9D004EFA0C /* SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C667ED19757B9D004EFA0C /* SwiftExtensions.swift */; };
 		E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77431971609A00E0557D /* SwiftyExpat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77721971667F00E0557D /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB775F1971667F00E0557D /* ascii.h */; };
-		E8FB77731971667F00E0557D /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77601971667F00E0557D /* asciitab.h */; };
+		E8FB77721971667F00E0557D /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB775F1971667F00E0557D /* ascii.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB77731971667F00E0557D /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77601971667F00E0557D /* asciitab.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8FB77741971667F00E0557D /* Changes in Resources */ = {isa = PBXBuildFile; fileRef = E8FB77611971667F00E0557D /* Changes */; };
 		E8FB77751971667F00E0557D /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = E8FB77621971667F00E0557D /* COPYING */; };
-		E8FB77761971667F00E0557D /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77631971667F00E0557D /* expat.h */; };
-		E8FB77771971667F00E0557D /* expat_config.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77641971667F00E0557D /* expat_config.h */; };
-		E8FB77781971667F00E0557D /* expat_external.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77651971667F00E0557D /* expat_external.h */; };
-		E8FB77791971667F00E0557D /* iasciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77661971667F00E0557D /* iasciitab.h */; };
-		E8FB777A1971667F00E0557D /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77671971667F00E0557D /* internal.h */; };
-		E8FB777C1971667F00E0557D /* nametab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77691971667F00E0557D /* nametab.h */; };
-		E8FB777D1971667F00E0557D /* utf8tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776A1971667F00E0557D /* utf8tab.h */; };
+		E8FB77761971667F00E0557D /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77631971667F00E0557D /* expat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB77771971667F00E0557D /* expat_config.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77641971667F00E0557D /* expat_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB77781971667F00E0557D /* expat_external.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77651971667F00E0557D /* expat_external.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB77791971667F00E0557D /* iasciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77661971667F00E0557D /* iasciitab.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB777A1971667F00E0557D /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77671971667F00E0557D /* internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB777C1971667F00E0557D /* nametab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77691971667F00E0557D /* nametab.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB777D1971667F00E0557D /* utf8tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776A1971667F00E0557D /* utf8tab.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8FB777E1971667F00E0557D /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776B1971667F00E0557D /* xmlparse.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1 -fno-objc-arc"; }; };
 		E8FB777F1971667F00E0557D /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776C1971667F00E0557D /* xmlrole.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1 -fno-objc-arc"; }; };
-		E8FB77801971667F00E0557D /* xmlrole.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776D1971667F00E0557D /* xmlrole.h */; };
+		E8FB77801971667F00E0557D /* xmlrole.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776D1971667F00E0557D /* xmlrole.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8FB77811971667F00E0557D /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776E1971667F00E0557D /* xmltok.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1 -fno-objc-arc"; }; };
-		E8FB77821971667F00E0557D /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776F1971667F00E0557D /* xmltok.h */; };
-		E8FB77841971667F00E0557D /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77711971667F00E0557D /* xmltok_impl.h */; };
-		E8FB7786197166D800E0557D /* latin1tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB7785197166D800E0557D /* latin1tab.h */; };
+		E8FB77821971667F00E0557D /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776F1971667F00E0557D /* xmltok.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB77841971667F00E0557D /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77711971667F00E0557D /* xmltok_impl.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8FB7786197166D800E0557D /* latin1tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB7785197166D800E0557D /* latin1tab.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8FB77941971767500E0557D /* SwiftyExpatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB77931971767500E0557D /* SwiftyExpatTests.swift */; };
 		E8FB77951971767500E0557D /* SwiftyExpat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FB773E1971609A00E0557D /* SwiftyExpat.framework */; };
-		E8FB779C1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB779B1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +93,6 @@
 		E8FB778F1971767500E0557D /* SwiftyExpatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyExpatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FB77921971767500E0557D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FB77931971767500E0557D /* SwiftyExpatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyExpatTests.swift; sourceTree = "<group>"; };
-		E8FB779B1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SwiftyExpat-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +149,6 @@
 		E8FB77411971609A00E0557D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E8FB779B1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h */,
 				E8FB77421971609A00E0557D /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -223,21 +220,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8FB77761971667F00E0557D /* expat.h in Headers */,
+				E8FB77781971667F00E0557D /* expat_external.h in Headers */,
+				E8FB77771971667F00E0557D /* expat_config.h in Headers */,
+				E8FB77801971667F00E0557D /* xmlrole.h in Headers */,
 				E8FB777C1971667F00E0557D /* nametab.h in Headers */,
 				E8FB77821971667F00E0557D /* xmltok.h in Headers */,
 				E8FB777D1971667F00E0557D /* utf8tab.h in Headers */,
 				E8FB77721971667F00E0557D /* ascii.h in Headers */,
 				E8FB77731971667F00E0557D /* asciitab.h in Headers */,
-				E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */,
-				E8FB77801971667F00E0557D /* xmlrole.h in Headers */,
-				E8FB779C1971E4AB00E0557D /* SwiftyExpat-Bridging-Header.h in Headers */,
-				E8FB77761971667F00E0557D /* expat.h in Headers */,
-				E8FB77781971667F00E0557D /* expat_external.h in Headers */,
 				E8FB777A1971667F00E0557D /* internal.h in Headers */,
-				E8FB77771971667F00E0557D /* expat_config.h in Headers */,
 				E8FB7786197166D800E0557D /* latin1tab.h in Headers */,
 				E8FB77841971667F00E0557D /* xmltok_impl.h in Headers */,
 				E8FB77791971667F00E0557D /* iasciitab.h in Headers */,
+				E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,7 +476,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyExpat/SwiftyExpat-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -498,7 +493,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "SwiftyExpat/SwiftyExpat-Bridging-Header.h";
 			};
 			name = Release;
 		};
