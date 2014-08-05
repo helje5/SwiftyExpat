@@ -20,7 +20,7 @@
  *  p.write("<hello>world</hello>")
  *  p.close()
  */
-public class Expat : OutputStream, LogicValue {
+public class Expat : OutputStreamType, BooleanType {
   
   public let nsSeparator : Character
   
@@ -43,7 +43,7 @@ public class Expat : OutputStream, LogicValue {
     parser = newParser
   }
   deinit {
-    if parser {
+    if parser != nil {
       XML_ParserFree(parser)
     }
   }
@@ -51,7 +51,7 @@ public class Expat : OutputStream, LogicValue {
   
   /* valid? */
   
-  public func getLogicValue() -> Bool {
+  public var boolValue : Bool {
     return parser != nil
   }
   
@@ -59,12 +59,12 @@ public class Expat : OutputStream, LogicValue {
   /* feed the parser */
   
   public func feedRaw
-    (cs: ConstUnsafePointer<CChar>, final: Bool = false) -> ExpatResult
+    (cs: UnsafePointer<CChar>, final: Bool = false) -> ExpatResult
   {
     // v4: for some reason this accepts a 'String', but for such it doesn't
     //     actually work
-    let cslen   = cs ? strlen(cs) : 0 // cs? checks for a NULL C string
-    let isFinal : Int32      = final ? 1 : 0
+    let cslen   = cs != nil ? strlen(cs) : 0 // cs? checks for a NULL C string
+    let isFinal : Int32 = final ? 1 : 0
     
     //dumpCharBuf(cs, Int(cslen))
     let status  : XML_Status = XML_Parse(parser, cs, Int32(cslen), isFinal)
@@ -81,8 +81,7 @@ public class Expat : OutputStream, LogicValue {
     }
   }
   public func feed(s: String, final: Bool = false) -> ExpatResult {
-    return s.withCString {
-      (cs: ConstUnsafePointer<CChar>) -> ExpatResult in
+    return s.withCString { cs -> ExpatResult in
       return self.feedRaw(cs, final: final)
     }
   }
@@ -138,10 +137,10 @@ public class Expat : OutputStream, LogicValue {
       _, name, attrs in
       let sName = String.fromCString(name)! // unwrap, must be set
       
-      var sAttrs = [ String : String]()
+      var sAttrs = [ String : String ]()
       if attrs != nil {
         var i = 0
-        while attrs[i] { // Note: you cannot compare it with nil?!
+        while attrs[i] != nil {
           let name  = String.fromCString(attrs[i])
           let value = String.fromCString(attrs[i + 1])
           sAttrs[name!] = value! // force unwrap
@@ -276,7 +275,7 @@ extension XML_Error : Printable {
   }
 }
 
-public enum ExpatResult : Printable, LogicValue {
+public enum ExpatResult : Printable, BooleanType {
   
   case OK
   case Suspended
@@ -290,7 +289,7 @@ public enum ExpatResult : Printable, LogicValue {
     }
   }
   
-  public func getLogicValue() -> Bool {
+  public var boolValue : Bool {
     switch self {
       case .OK: return true
       default:  return false
@@ -301,7 +300,7 @@ public enum ExpatResult : Printable, LogicValue {
 
 /* debug */
 
-func dumpCharBuf(buf: ConstUnsafePointer<CChar>, len : Int) {
+func dumpCharBuf(buf: UnsafePointer<CChar>, len : Int) {
   println("*-- buffer (len=\(len))")
   for var i = 0; i < len; i++ {
     let cp = Int(buf[i])
