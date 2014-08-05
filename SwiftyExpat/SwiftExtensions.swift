@@ -19,21 +19,18 @@ public func isByteEqual<T>(var lhs: T, var rhs: T) -> Bool {
 extension String {
   
   static func fromCString
-    (cs: ConstUnsafePointer<CChar>, length: Int!) -> String?
+    (cs: UnsafePointer<CChar>, length: Int!) -> String?
   {
     if length == .None { // no length given, use \0 standard variant
       return String.fromCString(cs)
     }
     
-    // hh: this is really lame, there must be a better way :-)
-    // Also: it could be a constant string! So we really need to copy ...
-    // NOTE: this is really really wrong, don't use it in actual projects! :-)
-    let unconst = UnsafePointer<CChar>(cs)
-    let old = cs[length]
-    unconst[length] = 0
-    let s   = String.fromCString(cs)
-    unconst[length] = old
-    
+    let buflen = length + 1
+    var buf    = UnsafeMutablePointer<CChar>.alloc(buflen)
+    memcpy(buf, cs, UInt(length))
+    buf[length] = 0 // zero terminate
+    let s = String.fromCString(buf)
+    buf.dealloc(buflen)
     return s
   }
 
