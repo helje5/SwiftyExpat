@@ -29,7 +29,7 @@ public class Expat : OutputStreamType, BooleanType {
   
   public init(encoding: String = "UTF-8", nsSeparator: Character = "<") {
     self.nsSeparator = nsSeparator
-    let sepUTF8   = ("" + self.nsSeparator).utf8
+    let sepUTF8   = ("" + String(self.nsSeparator)).utf8
     let separator = sepUTF8[sepUTF8.startIndex]
     
     var newParser : XML_Parser = nil
