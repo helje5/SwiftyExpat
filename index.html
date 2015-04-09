@@ -1,96 +1,110 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Swiftyexpat by AlwaysRightInstitute</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <title>Swiftyexpat by AlwaysRightInstitute</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
+    <header>
+      <div class="inner">
         <h1>Swiftyexpat</h1>
-        <p>Simple wrapper for the Expat XML parser.</p>
+        <h2>Simple wrapper for the Expat XML parser.</h2>
+        <a href="https://github.com/AlwaysRightInstitute/SwiftyExpat" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-        <p class="view"><a href="https://github.com/AlwaysRightInstitute/SwiftyExpat">View the Project on GitHub <small>AlwaysRightInstitute/SwiftyExpat</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/AlwaysRightInstitute/SwiftyExpat/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/AlwaysRightInstitute/SwiftyExpat/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/AlwaysRightInstitute/SwiftyExpat">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a name="swiftyexpat" class="anchor" href="#swiftyexpat"><span class="octicon octicon-link"></span></a>SwiftyExpat</h1>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="swiftyexpat" class="anchor" href="#swiftyexpat" aria-hidden="true"><span class="octicon octicon-link"></span></a>SwiftyExpat</h1>
 
 <p>Simple wrapper for the Expat XML parser. Which had to be adjusted to use
 blocks instead of function pointer callbacks.</p>
 
 <h3>
-<a name="targets" class="anchor" href="#targets"><span class="octicon octicon-link"></span></a>Targets</h3>
+<a id="targets" class="anchor" href="#targets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Targets</h3>
+
+<p>Updated to use Swift v0.2 (aka Xcode 6.3).</p>
 
 <p>The project includes two targets:</p>
 
 <ul>
 <li>SwiftyExpat</li>
 <li>SwiftyExpatTests</li>
-</ul><p>I suggest you start out looking at the SwiftyExpatTests.</p>
+</ul>
+
+<p>I suggest you start by looking at the SwiftyExpatTests.</p>
 
 <h4>
-<a name="swiftyexpat-1" class="anchor" href="#swiftyexpat-1"><span class="octicon octicon-link"></span></a>SwiftyExpat</h4>
+<a id="swiftyexpat-1" class="anchor" href="#swiftyexpat-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>SwiftyExpat</h4>
 
 <p>This is a tiny framework containing the modified Expat parser. Plus a small
 Swift class to make the API nicer, though this is not really necessary - the
 block based Expat is reasonably easy to use from Swift.</p>
 
-<div class="highlight highlight-Swift"><pre><span class="k">let</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Expat</span><span class="p">()</span>
-  <span class="p">.</span><span class="n">onStartElement</span>   <span class="p">{</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span> <span class="k">in</span> <span class="n">println</span><span class="p">(</span><span class="s">"&lt;\(name) \(attrs)"</span><span class="p">)</span>       <span class="p">}</span>
-  <span class="p">.</span><span class="n">onEndElement</span>     <span class="p">{</span> <span class="n">name</span>        <span class="k">in</span> <span class="n">println</span><span class="p">(</span><span class="s">"&gt;\(name)"</span><span class="p">)</span>                <span class="p">}</span>
-  <span class="p">.</span><span class="n">onStartNamespace</span> <span class="p">{</span> <span class="kr">prefix</span><span class="p">,</span> <span class="n">uri</span> <span class="k">in</span> <span class="n">println</span><span class="p">(</span><span class="s">"+NS[\(prefix)] = \(uri)"</span><span class="p">)</span> <span class="p">}</span>
-  <span class="p">.</span><span class="n">onEndNamespace</span>   <span class="p">{</span> <span class="kr">prefix</span>      <span class="k">in</span> <span class="n">println</span><span class="p">(</span><span class="s">"-NS[\(prefix)]"</span><span class="p">)</span>          <span class="p">}</span>
-  <span class="p">.</span><span class="n">onError</span>          <span class="p">{</span> <span class="n">error</span>       <span class="k">in</span> <span class="n">println</span><span class="p">(</span><span class="s">"ERROR: \(error)"</span><span class="p">)</span>         <span class="p">}</span>
-<span class="n">p</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">"&lt;hello&gt;world&lt;/hello&gt;"</span><span class="p">)</span>
-<span class="n">p</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
+<div class="highlight highlight-Swift"><pre><span class="pl-k">let</span> p <span class="pl-k">=</span> Expat()
+  <span class="pl-k">.</span>onStartElement   { name, attrs <span class="pl-k">in</span> println(<span class="pl-s"><span class="pl-pds">"</span>&lt;<span class="pl-pse">\(</span><span class="pl-s1">name</span><span class="pl-pse">)</span> <span class="pl-pse">\(</span><span class="pl-s1">attrs</span><span class="pl-pse">)</span><span class="pl-pds">"</span></span>)       }
+  <span class="pl-k">.</span>onEndElement     { name        <span class="pl-k">in</span> println(<span class="pl-s"><span class="pl-pds">"</span>&gt;<span class="pl-pse">\(</span><span class="pl-s1">name</span><span class="pl-pse">)</span><span class="pl-pds">"</span></span>)                }
+  <span class="pl-k">.</span>onStartNamespace { <span class="pl-k">prefix</span>, uri <span class="pl-k">in</span> println(<span class="pl-s"><span class="pl-pds">"</span>+NS[<span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-k">prefix</span></span><span class="pl-pse">)</span>] = <span class="pl-pse">\(</span><span class="pl-s1">uri</span><span class="pl-pse">)</span><span class="pl-pds">"</span></span>) }
+  <span class="pl-k">.</span>onEndNamespace   { <span class="pl-k">prefix</span>      <span class="pl-k">in</span> println(<span class="pl-s"><span class="pl-pds">"</span>-NS[<span class="pl-pse">\(</span><span class="pl-s1"><span class="pl-k">prefix</span></span><span class="pl-pse">)</span>]<span class="pl-pds">"</span></span>)          }
+  <span class="pl-k">.</span>onError          { error       <span class="pl-k">in</span> println(<span class="pl-s"><span class="pl-pds">"</span>ERROR: <span class="pl-pse">\(</span><span class="pl-s1">error</span><span class="pl-pse">)</span><span class="pl-pds">"</span></span>)         }
+p<span class="pl-k">.</span>write(<span class="pl-s"><span class="pl-pds">"</span>&lt;hello&gt;world&lt;/hello&gt;<span class="pl-pds">"</span></span>)
+p<span class="pl-k">.</span>close()</pre></div>
 
 <p>The raw Expat API works like this:</p>
 
-<div class="highlight highlight-Swift"><pre><span class="k">var</span> <span class="n">p</span> <span class="o">=</span> <span class="n">XML_ParserCreate</span><span class="p">(</span><span class="s">"UTF-8"</span><span class="p">)</span>
-<span class="n">XML_SetStartElementHandler</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">attrs</span> <span class="k">in</span> <span class="n">println</span><span class="p">(</span><span class="s">"start tag \(name)"</span><span class="p">)</span> <span class="p">}</span>
-<span class="n">XML_SetEndElementHandler</span>  <span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="n">_</span><span class="p">,</span> <span class="n">name</span>        <span class="k">in</span> <span class="n">println</span><span class="p">(</span><span class="s">"end tag \(name)"</span><span class="p">)</span> <span class="p">}</span>
+<div class="highlight highlight-Swift"><pre><span class="pl-k">var</span> p <span class="pl-k">=</span> XML_ParserCreate(<span class="pl-s"><span class="pl-pds">"</span>UTF-8<span class="pl-pds">"</span></span>)
+XML_SetStartElementHandler(p) { _, name, attrs <span class="pl-k">in</span> println(<span class="pl-s"><span class="pl-pds">"</span>start tag <span class="pl-pse">\(</span><span class="pl-s1">name</span><span class="pl-pse">)</span><span class="pl-pds">"</span></span>) }
+XML_SetEndElementHandler  (p) { _, name        <span class="pl-k">in</span> println(<span class="pl-s"><span class="pl-pds">"</span>end tag <span class="pl-pse">\(</span><span class="pl-s1">name</span><span class="pl-pse">)</span><span class="pl-pds">"</span></span>) }
 
-<span class="n">XML_Parse</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="s">"&lt;hello/&gt;"</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="n">XML_Parse</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="s">""</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+XML_Parse(parser, <span class="pl-s"><span class="pl-pds">"</span>&lt;hello/&gt;<span class="pl-pds">"</span></span>, <span class="pl-c1">8</span>, <span class="pl-c1">0</span>)
+XML_Parse(parser, <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span>, <span class="pl-c1">0</span>, <span class="pl-c1">1</span>)
 
-<span class="n">XML_ParserFree</span><span class="p">(</span><span class="n">p</span><span class="p">);</span> <span class="n">p</span> <span class="o">=</span> <span class="nb">nil</span>
-</pre></div>
+XML_ParserFree(p); p <span class="pl-k">=</span> nil</pre></div>
 
 <p>You get the idea ...</p>
 
 <h4>
-<a name="swiftyexpattests" class="anchor" href="#swiftyexpattests"><span class="octicon octicon-link"></span></a>SwiftyExpatTests</h4>
+<a id="swiftyexpattests" class="anchor" href="#swiftyexpattests" aria-hidden="true"><span class="octicon octicon-link"></span></a>SwiftyExpatTests</h4>
 
 <p>Just a tiny demo on how to invoke the parser.</p>
 
 <h3>
-<a name="contact" class="anchor" href="#contact"><span class="octicon octicon-link"></span></a>Contact</h3>
+<a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h3>
 
 <p><a href="http://twitter.com/helje5">@helje5</a> | <a href="mailto:helge@alwaysrightinstitute.com">helge@alwaysrightinstitute.com</a></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/AlwaysRightInstitute">AlwaysRightInstitute</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/AlwaysRightInstitute/SwiftyExpat/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/AlwaysRightInstitute/SwiftyExpat/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/AlwaysRightInstitute/SwiftyExpat"></a> is maintained by <a href="https://github.com/AlwaysRightInstitute">AlwaysRightInstitute</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+  
   </body>
 </html>
