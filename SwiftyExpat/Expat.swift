@@ -215,7 +215,7 @@ public extension Expat { // Namespaces
   {
     let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
     return onStartElement {
-      let comps = split($0, { $0 == sep }, maxSplit: 1, allowEmptySlices: false)
+      let comps = split($0, maxSplit: 1, allowEmptySlices: false) { $0 == sep }
       cb(comps[0], comps[1], $1)
     }
   }
@@ -223,7 +223,7 @@ public extension Expat { // Namespaces
   public func onEndElementNS(cb: ( String, String ) -> Void) -> Self {
     let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
     return onEndElement {
-      let comps = split($0, { $0 == sep }, maxSplit: 1, allowEmptySlices: false)
+      let comps = split($0, maxSplit: 1, allowEmptySlices: false) { $0 == sep }
       cb(comps[0], comps[1])
     }
   }

@@ -6,11 +6,13 @@ blocks instead of function pointer callbacks.
 
 ###Targets
 
+Updated to use Swift v0.2.3 (aka Xcode 6.3 beta).
+
 The project includes two targets:
 - SwiftyExpat
 - SwiftyExpatTests
 
-I suggest you start out looking at the SwiftyExpatTests.
+I suggest you start by looking at the SwiftyExpatTests.
 
 ####SwiftyExpat
 

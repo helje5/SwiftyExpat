@@ -13,7 +13,7 @@
 // Hack to compare values if we don't have access to the members of the struct,
 // eg XML_Error in v0.0.4
 public func isByteEqual<T>(var lhs: T, var rhs: T) -> Bool {
-  return memcmp(&lhs, &rhs, UInt(sizeof(T))) == 0
+  return memcmp(&lhs, &rhs, sizeof(T)) == 0
 }
 
 extension String {
@@ -27,7 +27,7 @@ extension String {
     
     let buflen = length + 1
     var buf    = UnsafeMutablePointer<CChar>.alloc(buflen)
-    memcpy(buf, cs, UInt(length))
+    memcpy(buf, cs, length)
     buf[length] = 0 // zero terminate
     let s = String.fromCString(buf)
     buf.dealloc(buflen)
