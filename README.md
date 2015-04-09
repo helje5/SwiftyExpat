@@ -6,7 +6,7 @@ blocks instead of function pointer callbacks.
 
 ###Targets
 
-Updated to use Swift v0.2.3 (aka Xcode 6.3 beta).
+Updated to use Swift v0.2 (aka Xcode 6.3).
 
 The project includes two targets:
 - SwiftyExpat
