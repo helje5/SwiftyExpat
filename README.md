@@ -7,6 +7,10 @@ Simple wrapper for the Expat XML parser.
 
 Updated to use Swift v2.0p1 (aka Xcode 7b).
 
+Note: the SwiftyExpat version for Swift 1.x is using a modified Expat which uses
+blocks instead of C function pointer callbacks. Swift 2 now supports C function
+pointer calls and hence this project rewritten for this.
+
 The project includes two targets:
 - SwiftyExpat
 - SwiftyExpatTests
@@ -43,9 +47,9 @@ XML_ParserFree(p); p = nil
 ```
 You get the idea ...
 
-Note: With the function based Expat API, the closures in the raw API cannot
-      capture references. You need to use the 'user data' field (which the
-      wrapper does).
+Note: The closures in the raw API cannot capture variables. If you need to pass
+around context, you need to fill the regular Expat 'user data' field (which the
+wrapper does).
 
 ####SwiftyExpatTests
 

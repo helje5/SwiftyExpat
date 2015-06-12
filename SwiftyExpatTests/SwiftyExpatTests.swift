@@ -32,7 +32,7 @@ class SwiftyExpatTests: XCTestCase {
   }
   
   func testSimpleParsing() {
-    XCTAssert(true, "Pass")
+    print("\n----------")
     
     var result  : ExpatResult
     let testXML = "<hello xmlns='YoYo' a='5'><x>world</x></hello>"
@@ -41,11 +41,12 @@ class SwiftyExpatTests: XCTestCase {
     XCTAssert(result)
     
     result = p.close() // EOF
+    print("Feed result: \(result)")
     XCTAssert(result)
   }
 
   func testErrorHandling() {
-    XCTAssert(true, "Pass")
+    print("\n----------")
     
     var result  : ExpatResult
     let testXML = "<hello xmlns='YoYo' a='5'>x>world</x></hello>"

@@ -32,17 +32,18 @@ public final class Expat : OutputStreamType, BooleanType {
     let sepUTF8   = ("" + String(self.nsSeparator)).utf8
     let separator = sepUTF8[sepUTF8.startIndex]
     
-    self.parser = encoding.withCString { cs in
+    parser = encoding.withCString { cs in
       // if I use parser, swiftc crashes (if Expat is a class)
       // FIXME: use String for separator, and codepoints to get the Int?
-      let newParser = XML_ParserCreateNS(cs, XML_Char(separator))
-      assert(newParser != nil)
-      
-      // TBD: what is the better way to do this?
-      let ud = unsafeBitCast(self, UnsafeMutablePointer<Void>.self)
-      XML_SetUserData(newParser, ud)
-      return newParser
+      XML_ParserCreateNS(cs, XML_Char(separator))
     }
+    assert(parser != nil)
+    
+    // TBD: what is the better way to do this?
+    let ud = unsafeBitCast(self, UnsafeMutablePointer<Void>.self)
+    XML_SetUserData(parser, ud)
+    
+    registerCallbacks()
   }
   deinit {
     if parser != nil {
@@ -108,6 +109,7 @@ public final class Expat : OutputStreamType, BooleanType {
     isClosed = true
     
     XML_ParserFree(parser)
+    parser = nil
     return result
   }
   
@@ -169,25 +171,12 @@ public final class Expat : OutputStreamType, BooleanType {
   
   func resetCallbacks() {
     // reset callbacks to fixup any potential cycles
-    cbStartElement = nil
-    cbEndElement   = nil
-    
-    // we really don't need to do this. nothing is retained here
-    XML_SetElementHandler           (parser, nil, nil)
-    XML_SetCharacterDataHandler     (parser, nil)
-    XML_SetProcessingInstructionHandler(parser, nil)
-    XML_SetCommentHandler           (parser, nil)
-    XML_SetCdataSectionHandler      (parser, nil, nil)
-    XML_SetDefaultHandler           (parser, nil)
-    XML_SetDefaultHandlerExpand     (parser, nil)
-    XML_SetDoctypeDeclHandler       (parser, nil, nil)
-    XML_SetUnparsedEntityDeclHandler(parser, nil)
-    XML_SetNotationDeclHandler      (parser, nil)
-    XML_SetNamespaceDeclHandler     (parser, nil, nil)
-    XML_SetNotStandaloneHandler     (parser, nil)
-    XML_SetExternalEntityRefHandler (parser, nil)
-    XML_SetSkippedEntityHandler     (parser, nil)
-    XML_SetUnknownEncodingHandler   (parser, nil, nil)
+    cbStartElement  = nil
+    cbEndElement    = nil
+    cbStartNS       = nil
+    cbEndNS         = nil
+    cbCharacterData = nil
+    cbError         = nil
   }
   
   
