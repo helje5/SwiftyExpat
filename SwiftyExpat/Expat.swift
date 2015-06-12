@@ -24,16 +24,15 @@ public final class Expat : OutputStreamType, BooleanType {
   
   public let nsSeparator : Character
   
-  var parser      : XML_Parser! = nil
-  var isClosed    = false
+  var parser   : XML_Parser! = nil
+  var isClosed = false
   
   public init(encoding: String = "UTF-8", nsSeparator: Character = "<") {
     self.nsSeparator = nsSeparator
     let sepUTF8   = ("" + String(self.nsSeparator)).utf8
     let separator = sepUTF8[sepUTF8.startIndex]
     
-    // self.parser = ... doesn't work because of the 'self' bitcast
-    let newParser : XML_Parser = encoding.withCString { cs in
+    self.parser = encoding.withCString { cs in
       // if I use parser, swiftc crashes (if Expat is a class)
       // FIXME: use String for separator, and codepoints to get the Int?
       let newParser = XML_ParserCreateNS(cs, XML_Char(separator))
@@ -44,8 +43,6 @@ public final class Expat : OutputStreamType, BooleanType {
       XML_SetUserData(newParser, ud)
       return newParser
     }
-    
-    parser = newParser
   }
   deinit {
     if parser != nil {
