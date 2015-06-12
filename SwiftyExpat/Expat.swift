@@ -192,8 +192,8 @@ public class Expat : OutputStreamType, BooleanType {
           cb(s)
         }
         else {
-          println("ERROR: could not convert CString to String?! (len=\(cslen))")
-          dumpCharBuf(cs, Int(cslen))
+          print("ERROR: could not convert CString to String?! (len=\(cslen))")
+          dumpCharBuf(cs, len: Int(cslen))
         }
       }
     }
@@ -215,7 +215,7 @@ public extension Expat { // Namespaces
   {
     let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
     return onStartElement {
-      let comps = split($0, maxSplit: 1, allowEmptySlices: false) { $0 == sep }
+      let comps = split($0.characters, maxSplit: 1, allowEmptySlices: false) { $0 == sep }.map { String($0) }
       cb(comps[0], comps[1], $1)
     }
   }
@@ -223,7 +223,7 @@ public extension Expat { // Namespaces
   public func onEndElementNS(cb: ( String, String ) -> Void) -> Self {
     let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
     return onEndElement {
-      let comps = split($0, maxSplit: 1, allowEmptySlices: false) { $0 == sep }
+      let comps = split($0.characters, maxSplit: 1, allowEmptySlices: false) { $0 == sep }.map { String($0) }
       cb(comps[0], comps[1])
     }
   }
@@ -247,14 +247,14 @@ public func ==(lhs: XML_Error, rhs: XML_Error) -> Bool {
   // this failes, maybe because it's not public?:
   //   return lhs.value == rhs.value
   // Hard hack, does it actually work? :-)
-  return isByteEqual(lhs, rhs)
+  return isByteEqual(lhs, rhs: rhs)
 }
 public func ==(lhs: XML_Status, rhs: XML_Status) -> Bool {
-  return isByteEqual(lhs, rhs)
+  return isByteEqual(lhs, rhs: rhs)
 }
 
 
-extension XML_Error : Printable {
+extension XML_Error : CustomStringConvertible {
   
   public var description: String {
     switch self {
@@ -275,7 +275,7 @@ extension XML_Error : Printable {
   }
 }
 
-public enum ExpatResult : Printable, BooleanType {
+public enum ExpatResult : CustomStringConvertible, BooleanType {
   
   case OK
   case Suspended
@@ -301,11 +301,11 @@ public enum ExpatResult : Printable, BooleanType {
 /* debug */
 
 func dumpCharBuf(buf: UnsafePointer<CChar>, len : Int) {
-  println("*-- buffer (len=\(len))")
+  print("*-- buffer (len=\(len))")
   for var i = 0; i < len; i++ {
     let cp = Int(buf[i])
     let c  = Character(UnicodeScalar(cp))
-    println("  [\(i)]: \(cp) \(c)")
+    print("  [\(i)]: \(cp) \(c)")
   }
-  println("---")
+  print("---")
 }

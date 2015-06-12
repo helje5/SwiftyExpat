@@ -18,12 +18,12 @@ class SwiftyExpatTests: XCTestCase {
     super.setUp()
     
     p = Expat()
-      .onStartElement   { name, attrs in println("<\(name) \(attrs)")       }
-      .onEndElement     { name        in println(">\(name)")                }
-      .onStartNamespace { prefix, uri in println("+NS[\(prefix)] = \(uri)") }
-      .onEndNamespace   { prefix      in println("-NS[\(prefix)]")          }
-      .onCharacterData  { content     in println("TEXT: \(content)")        }
-      .onError          { error       in println("ERROR \(error)")          }
+      .onStartElement   { name, attrs in print("<\(name) \(attrs)")       }
+      .onEndElement     { name        in print(">\(name)")                }
+      .onStartNamespace { prefix, uri in print("+NS[\(prefix)] = \(uri)") }
+      .onEndNamespace   { prefix      in print("-NS[\(prefix)]")          }
+      .onCharacterData  { content     in print("TEXT: \(content)")        }
+      .onError          { error       in print("ERROR \(error)")          }
   }
   
   override func tearDown() {
@@ -51,7 +51,7 @@ class SwiftyExpatTests: XCTestCase {
     let testXML = "<hello xmlns='YoYo' a='5'>x>world</x></hello>"
     
     result = p.feed(testXML)
-    println("Feed result: \(result)")
+    print("Feed result: \(result)")
     XCTAssert(!result)
     
     result = p.close() // EOF
