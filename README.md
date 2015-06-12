@@ -1,12 +1,11 @@
 SwiftyExpat
 ===========
 
-Simple wrapper for the Expat XML parser. Which had to be adjusted to use
-blocks instead of function pointer callbacks.
+Simple wrapper for the Expat XML parser.
 
 ###Targets
 
-Updated to use Swift v0.2 (aka Xcode 6.3).
+Updated to use Swift v2.0p1 (aka Xcode 7b).
 
 The project includes two targets:
 - SwiftyExpat
@@ -43,6 +42,10 @@ XML_Parse(parser, "", 0, 1)
 XML_ParserFree(p); p = nil
 ```
 You get the idea ...
+
+Note: With the function based Expat API, the closures in the raw API cannot
+      capture references. You need to use the 'user data' field (which the
+      wrapper does).
 
 ####SwiftyExpatTests
 

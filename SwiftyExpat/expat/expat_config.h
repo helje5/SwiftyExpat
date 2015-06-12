@@ -2,7 +2,7 @@
 /* expat_config.h.in.  Generated from configure.in by autoheader.  */
 
 // hh
-#define EXPAT_WITH_BLOCKS 1
+//#define EXPAT_WITH_BLOCKS 1
 
 /* 1234 = LIL_ENDIAN, 4321 = BIGENDIAN */
 #define BYTEORDER 1234
