@@ -58,4 +58,23 @@ class SwiftyExpatTests: XCTestCase {
     result = p.close() // EOF
     XCTAssert(!result)
   }
+  
+  func testRawAPI() {
+    print("\n----------")
+    
+    let p = XML_ParserCreate("UTF-8")
+    defer { XML_ParserFree(p); }
+    
+    XML_SetStartElementHandler(p) { _, name, attrs in
+      let nameString = String.fromCString(name)!
+      print("start tag \(nameString)")
+    }
+    XML_SetEndElementHandler  (p) { _, name in
+      let nameString = String.fromCString(name)!
+      print("end tag \(nameString)")
+    }
+    
+    XML_Parse(p, "<hello/>", 8, 0)
+    XML_Parse(p, "", 0, 1)
+  }
 }

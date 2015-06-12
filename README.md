@@ -25,11 +25,11 @@ Swift as-is.
 
 ```Swift
 let p = Expat()
-  .onStartElement   { name, attrs in println("<\(name) \(attrs)")       }
-  .onEndElement     { name        in println(">\(name)")                }
-  .onStartNamespace { prefix, uri in println("+NS[\(prefix)] = \(uri)") }
-  .onEndNamespace   { prefix      in println("-NS[\(prefix)]")          }
-  .onError          { error       in println("ERROR: \(error)")         }
+  .onStartElement   { name, attrs in print("<\(name) \(attrs)")       }
+  .onEndElement     { name        in print(">\(name)")                }
+  .onStartNamespace { prefix, uri in print("+NS[\(prefix)] = \(uri)") }
+  .onEndNamespace   { prefix      in print("-NS[\(prefix)]")          }
+  .onError          { error       in print("ERROR: \(error)")         }
 p.write("<hello>world</hello>")
 p.close()
 ```
@@ -37,13 +37,17 @@ p.close()
 The raw Expat API works like this:
 ```Swift
 let p = XML_ParserCreate("UTF-8")
-XML_SetStartElementHandler(p) { _, name, attrs in println("start tag \(name)") }
-XML_SetEndElementHandler  (p) { _, name        in println("end tag \(name)") }
+defer { XML_ParserFree(p) }
 
-XML_Parse(parser, "<hello/>", 8, 0)
-XML_Parse(parser, "", 0, 1)
+XML_SetStartElementHandler(p) { _, name, attrs in
+  print("start tag \(String.fromCString(name)!)")
+}
+XML_SetEndElementHandler  (p) { _, name in
+  print("end tag \(String.fromCString(name)!)")
+}
 
-XML_ParserFree(p); p = nil
+XML_Parse(p, "<hello/>", 8, 0)
+XML_Parse(p, "", 0, 1)
 ```
 You get the idea ...
 
