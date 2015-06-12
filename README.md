@@ -7,9 +7,9 @@ Simple wrapper for the Expat XML parser.
 
 Updated to use Swift v2.0p1 (aka Xcode 7b).
 
-Note: the SwiftyExpat version for Swift 1.x is using a modified Expat which uses
+Note: The SwiftyExpat version for Swift 1.x was using a modified Expat which used
 blocks instead of C function pointer callbacks. Swift 2 now supports C function
-pointer calls and hence this project rewritten for this.
+pointer calls and hence this project got rewritten for this.
 
 The project includes two targets:
 - SwiftyExpat
@@ -19,9 +19,9 @@ I suggest you start by looking at the SwiftyExpatTests.
 
 ####SwiftyExpat
 
-This is a tiny framework containing the modified Expat parser. Plus a small
-Swift class to make the API nicer, though this is not really necessary - the
-block based Expat is reasonably easy to use from Swift.
+This is a tiny framework wth a small Swift class to make the API nicer.
+Though this is not really necessary - Expat is reasonably easy to use from 
+Swift as-is.
 
 ```Swift
 let p = Expat()
@@ -36,7 +36,7 @@ p.close()
 
 The raw Expat API works like this:
 ```Swift
-var p = XML_ParserCreate("UTF-8")
+let p = XML_ParserCreate("UTF-8")
 XML_SetStartElementHandler(p) { _, name, attrs in println("start tag \(name)") }
 XML_SetEndElementHandler  (p) { _, name        in println("end tag \(name)") }
 
@@ -48,8 +48,8 @@ XML_ParserFree(p); p = nil
 You get the idea ...
 
 Note: The closures in the raw API cannot capture variables. If you need to pass
-around context, you need to fill the regular Expat 'user data' field (which the
-wrapper does).
+around context (very likely ...), you need to fill the regular Expat 'user data' 
+field (which the wrapper does, if you need an example).
 
 ####SwiftyExpatTests
 
