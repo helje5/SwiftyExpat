@@ -20,31 +20,35 @@
  *  p.write("<hello>world</hello>")
  *  p.close()
  */
-public class Expat : OutputStreamType, BooleanType {
+public final class Expat : OutputStreamType, BooleanType {
   
   public let nsSeparator : Character
   
-  var parser      : XML_Parser = nil
-  var isClosed    = false
+  var parser   : XML_Parser! = nil
+  var isClosed = false
   
   public init(encoding: String = "UTF-8", nsSeparator: Character = "<") {
     self.nsSeparator = nsSeparator
     let sepUTF8   = ("" + String(self.nsSeparator)).utf8
     let separator = sepUTF8[sepUTF8.startIndex]
     
-    var newParser : XML_Parser = nil
-    encoding.withCString { cs in
+    parser = encoding.withCString { cs in
       // if I use parser, swiftc crashes (if Expat is a class)
       // FIXME: use String for separator, and codepoints to get the Int?
-      newParser = XML_ParserCreateNS(cs, XML_Char(separator))
+      XML_ParserCreateNS(cs, XML_Char(separator))
     }
-    assert(newParser != nil)
+    assert(parser != nil)
     
-    parser = newParser
+    // TBD: what is the better way to do this?
+    let ud = unsafeBitCast(self, UnsafeMutablePointer<Void>.self)
+    XML_SetUserData(parser, ud)
+    
+    registerCallbacks()
   }
   deinit {
     if parser != nil {
       XML_ParserFree(parser)
+      parser = nil
     }
   }
   
@@ -74,7 +78,7 @@ public class Expat : OutputStreamType, BooleanType {
       case XML_STATUS_SUSPENDED: return ExpatResult.Suspended
       default:
         let error = XML_GetErrorCode(parser)
-        if let cb = errorCB {
+        if let cb = cbError {
           cb(error)
         }
         return ExpatResult.Error(error)
@@ -106,124 +110,145 @@ public class Expat : OutputStreamType, BooleanType {
     
     XML_ParserFree(parser)
     parser = nil
-    
     return result
+  }
+  
+  func registerCallbacks() {
+    XML_SetStartElementHandler(parser) { ud, name, attrs in
+      let me = unsafeBitCast(ud, Expat.self)
+      guard let cb = me.cbStartElement else { return }
+      
+      let sName = String.fromCString(name)! // unwrap, must be set
+      
+      // FIXME: we should not copy stuff, but have a wrapper which works on the
+      //        attrs structure 'on demand'
+      let sAttrs = makeAttributesDictionary(attrs)
+      cb(sName, sAttrs)
+    }
+    
+    XML_SetEndElementHandler(parser) { ud, name in
+      let me = unsafeBitCast(ud, Expat.self)
+      guard let cb = me.cbEndElement else { return }
+      
+      let sName = String.fromCString(name)! // unwrap, must be set
+      cb(sName)
+    }
+    
+    XML_SetStartNamespaceDeclHandler(parser) { ud, prefix, uri in
+      let me = unsafeBitCast(ud, Expat.self)
+      guard let cb = me.cbStartNS else { return }
+      
+      let sPrefix = String.fromCString(prefix)
+      let sURI    = String.fromCString(uri)!
+      cb(sPrefix, sURI)
+    }
+    XML_SetEndNamespaceDeclHandler(parser) { ud, prefix in
+      let me = unsafeBitCast(ud, Expat.self)
+      guard let cb = me.cbEndNS else { return }
+      
+      let sPrefix = String.fromCString(prefix)
+      cb(sPrefix)
+    }
+    
+    XML_SetCharacterDataHandler(parser) { ud, cs, cslen in
+      assert(cslen > 0)
+      assert(cs    != nil)
+      // println("CS: \(cs[0]) len \(cslen)")
+      guard cslen > 0 else { return }
+
+      let me = unsafeBitCast(ud, Expat.self)
+      guard let cb = me.cbCharacterData else { return }
+
+      guard let s = String.fromCString(cs, length: Int(cslen)) else {
+        print("ERROR: could not convert CString to String?! (len=\(cslen))")
+        dumpCharBuf(cs, len: Int(cslen))
+        return
+      }
+      
+      cb(s)
+    }
   }
   
   func resetCallbacks() {
     // reset callbacks to fixup any potential cycles
-    XML_SetElementHandler           (parser, nil, nil)
-    XML_SetCharacterDataHandler     (parser, nil)
-    XML_SetProcessingInstructionHandler(parser, nil)
-    XML_SetCommentHandler           (parser, nil)
-    XML_SetCdataSectionHandler      (parser, nil, nil)
-    XML_SetDefaultHandler           (parser, nil)
-    XML_SetDefaultHandlerExpand     (parser, nil)
-    XML_SetDoctypeDeclHandler       (parser, nil, nil)
-    XML_SetUnparsedEntityDeclHandler(parser, nil)
-    XML_SetNotationDeclHandler      (parser, nil)
-    XML_SetNamespaceDeclHandler     (parser, nil, nil)
-    XML_SetNotStandaloneHandler     (parser, nil)
-    XML_SetExternalEntityRefHandler (parser, nil)
-    XML_SetSkippedEntityHandler     (parser, nil)
-    XML_SetUnknownEncodingHandler   (parser, nil, nil)
+    cbStartElement  = nil
+    cbEndElement    = nil
+    cbStartNS       = nil
+    cbEndNS         = nil
+    cbCharacterData = nil
+    cbError         = nil
   }
   
   
   /* callbacks */
   
-  public func onStartElement(cb: ( String, [String : String] ) -> Void)-> Self {
-    XML_SetStartElementHandler(parser) {
-      _, name, attrs in
-      let sName = String.fromCString(name)! // unwrap, must be set
-      
-      var sAttrs = [ String : String ]()
-      if attrs != nil {
-        var i = 0
-        while attrs[i] != nil {
-          let name  = String.fromCString(attrs[i])
-          let value = String.fromCString(attrs[i + 1])
-          sAttrs[name!] = value! // force unwrap
-          i += 2
-        }
-      }
-      
-      cb(sName, sAttrs)
-    }
-    
+  public typealias AttrDict              = [ String : String ]
+  public typealias StartElementHandler   = ( String, AttrDict) -> Void
+  public typealias EndElementHandler     = ( String ) -> Void
+  public typealias StartNamespaceHandler = ( String?, String ) -> Void
+  public typealias EndNamespaceHandler   = ( String? ) -> Void
+  public typealias CDataHandler          = ( String? ) -> Void
+  public typealias ErrorHandler          = ( XML_Error ) -> Void
+  
+  var cbStartElement  : StartElementHandler?
+  var cbEndElement    : EndElementHandler?
+  var cbStartNS       : StartNamespaceHandler?
+  var cbEndNS         : EndNamespaceHandler?
+  var cbCharacterData : CDataHandler?
+  var cbError         : ErrorHandler?
+  
+  public func onStartElement(cb: StartElementHandler)-> Self {
+    cbStartElement = cb
+    return self
+  }
+  public func onEndElement(cb: EndElementHandler) -> Self {
+    cbEndElement = cb
     return self
   }
   
-  public func onEndElement(cb: ( String ) -> Void) -> Self {
-    XML_SetEndElementHandler(parser) { _, name in
-      let sName = String.fromCString(name)! // unwrap, must be set
-      cb(sName)
-    }
+  public func onStartNamespace(cb: StartNamespaceHandler) -> Self {
+    cbStartNS = cb
+    return self
+  }
+  public func onEndNamespace(cb: EndNamespaceHandler) -> Self {
+    cbEndNS = cb
     return self
   }
   
-  public func onStartNamespace(cb: ( String?, String ) -> Void) -> Self {
-    XML_SetStartNamespaceDeclHandler(parser) {
-      _, prefix, uri in
-      let sPrefix = String.fromCString(prefix)
-      let sURI    = String.fromCString(uri)!
-      cb(sPrefix, sURI)
-    }
+  public func onCharacterData(cb: CDataHandler) -> Self {
+    cbCharacterData = cb
     return self
   }
   
-  public func onEndNamespace(cb: ( String? ) -> Void) -> Self {
-    XML_SetEndNamespaceDeclHandler(parser) {
-      _, prefix in
-      let sPrefix = String.fromCString(prefix)
-      cb(sPrefix)
-    }
+  public func onError(cb: ErrorHandler) -> Self {
+    cbError = cb
     return self
   }
-  
-  public func onCharacterData(cb: ( String ) -> Void) -> Self {
-    XML_SetCharacterDataHandler(parser) {
-      _, cs, cslen in
-      assert(cslen > 0)
-      assert(cs    != nil)
-      // println("CS: \(cs[0]) len \(cslen)")
-      if cslen > 0 {
-        if let s = String.fromCString(cs, length: Int(cslen)) {
-          cb(s)
-        }
-        else {
-          println("ERROR: could not convert CString to String?! (len=\(cslen))")
-          dumpCharBuf(cs, Int(cslen))
-        }
-      }
-    }
-    return self
-  }
-  
-  public func onError(cb: ( XML_Error ) -> Void) -> Self {
-    errorCB = cb
-    return self
-  }
-  var errorCB : (( XML_Error ) -> Void)? = nil
 }
 
 
 public extension Expat { // Namespaces
   
-  public func onStartElementNS
-    (cb: ( String, String, [String : String] ) -> Void) -> Self
-  {
+  public typealias StartElementNSHandler =
+                     ( String, String, [String : String] ) -> Void
+  public typealias EndElementNSHandler = ( String, String ) -> Void
+  
+  public func onStartElementNS(cb: StartElementNSHandler) -> Self {
     let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
     return onStartElement {
-      let comps = split($0, maxSplit: 1, allowEmptySlices: false) { $0 == sep }
+      let comps = split($0.characters, maxSplit: 1, allowEmptySlices: false) {
+                    $0 == sep
+                  }.map { String($0) }
       cb(comps[0], comps[1], $1)
     }
   }
   
-  public func onEndElementNS(cb: ( String, String ) -> Void) -> Self {
+  public func onEndElementNS(cb: EndElementNSHandler) -> Self {
     let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
     return onEndElement {
-      let comps = split($0, maxSplit: 1, allowEmptySlices: false) { $0 == sep }
+      let comps = split($0.characters, maxSplit: 1, allowEmptySlices: false) {
+                    $0 == sep
+                  }.map { String($0) }
       cb(comps[0], comps[1])
     }
   }
@@ -247,14 +272,14 @@ public func ==(lhs: XML_Error, rhs: XML_Error) -> Bool {
   // this failes, maybe because it's not public?:
   //   return lhs.value == rhs.value
   // Hard hack, does it actually work? :-)
-  return isByteEqual(lhs, rhs)
+  return isByteEqual(lhs, rhs: rhs)
 }
 public func ==(lhs: XML_Status, rhs: XML_Status) -> Bool {
-  return isByteEqual(lhs, rhs)
+  return isByteEqual(lhs, rhs: rhs)
 }
 
 
-extension XML_Error : Printable {
+extension XML_Error : CustomStringConvertible {
   
   public var description: String {
     switch self {
@@ -275,7 +300,7 @@ extension XML_Error : Printable {
   }
 }
 
-public enum ExpatResult : Printable, BooleanType {
+public enum ExpatResult : CustomStringConvertible, BooleanType {
   
   case OK
   case Suspended
@@ -301,11 +326,28 @@ public enum ExpatResult : Printable, BooleanType {
 /* debug */
 
 func dumpCharBuf(buf: UnsafePointer<CChar>, len : Int) {
-  println("*-- buffer (len=\(len))")
+  print("*-- buffer (len=\(len))")
   for var i = 0; i < len; i++ {
     let cp = Int(buf[i])
     let c  = Character(UnicodeScalar(cp))
-    println("  [\(i)]: \(cp) \(c)")
+    print("  [\(i)]: \(cp) \(c)")
   }
-  println("---")
+  print("---")
+}
+
+func makeAttributesDictionary
+  (attrs : UnsafeMutablePointer<UnsafePointer<XML_Char>>)
+  -> [ String : String ]
+{
+  var sAttrs = [ String : String ]()
+  if attrs != nil {
+    var i = 0
+    while attrs[i] != nil {
+      let name  = String.fromCString(attrs[i])
+      let value = String.fromCString(attrs[i + 1])
+      sAttrs[name!] = value! // force unwrap
+      i += 2
+    }
+  }
+  return sAttrs
 }

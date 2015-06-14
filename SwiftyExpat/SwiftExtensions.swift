@@ -26,7 +26,7 @@ extension String {
     }
     
     let buflen = length + 1
-    var buf    = UnsafeMutablePointer<CChar>.alloc(buflen)
+    let buf    = UnsafeMutablePointer<CChar>.alloc(buflen)
     memcpy(buf, cs, length)
     buf[length] = 0 // zero terminate
     let s = String.fromCString(buf)
