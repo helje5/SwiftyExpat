@@ -236,9 +236,8 @@ public extension Expat { // Namespaces
   public func onStartElementNS(cb: StartElementNSHandler) -> Self {
     let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
     return onStartElement {
-      let comps = split($0.characters, maxSplit: 1, allowEmptySlices: false) {
-                    $0 == sep
-                  }.map { String($0) }
+      let comps = $0.characters.split(sep, maxSplit: 1, allowEmptySlices: false)
+                               .map { String($0) }
       cb(comps[0], comps[1], $1)
     }
   }
@@ -246,9 +245,8 @@ public extension Expat { // Namespaces
   public func onEndElementNS(cb: EndElementNSHandler) -> Self {
     let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
     return onEndElement {
-      let comps = split($0.characters, maxSplit: 1, allowEmptySlices: false) {
-                    $0 == sep
-                  }.map { String($0) }
+      let comps = $0.characters.split(sep, maxSplit: 1, allowEmptySlices: false)
+                               .map { String($0) }
       cb(comps[0], comps[1])
     }
   }
