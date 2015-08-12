@@ -5,11 +5,11 @@ Simple wrapper for the Expat XML parser.
 
 ###Targets
 
-Updated to use Swift v2.0p1 (aka Xcode 7b).
+Updated to use Swift v0.2b5 (aka Xcode 7b5).
 
-Note: The SwiftyExpat version for Swift 1.x was using a modified Expat which used
-blocks instead of C function pointer callbacks. Swift 2 now supports C function
-pointer calls and hence this project got rewritten for this.
+Note: The SwiftyExpat version for Swift 1.x was using a modified Expat which
+used blocks instead of C function pointer callbacks. Swift 2 now supports C 
+function pointer calls and hence this project got rewritten for this.
 
 The project includes two targets:
 - SwiftyExpat
