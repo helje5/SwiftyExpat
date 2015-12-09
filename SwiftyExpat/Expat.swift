@@ -254,23 +254,6 @@ public extension Expat { // Namespaces
 }
 
 
-/* hack to make some structs work */
-// FIXME: can't figure out how to access XML_Error. Maybe because it
-//        is not 'public'?
-
-public func ==(lhs: XML_Error, rhs: XML_Error) -> Bool {
-  // this just recurses (of course):
-  //   return lhs == rhs
-  // this failes, maybe because it's not public?:
-  //   return lhs.value == rhs.value
-  // Hard hack, does it actually work? :-)
-  return isByteEqual(lhs, rhs: rhs)
-}
-public func ==(lhs: XML_Status, rhs: XML_Status) -> Bool {
-  return isByteEqual(lhs, rhs: rhs)
-}
-
-
 extension XML_Error : CustomStringConvertible {
   
   public var description: String {
