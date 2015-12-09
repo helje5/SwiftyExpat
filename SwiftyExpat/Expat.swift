@@ -258,12 +258,6 @@ public extension Expat { // Namespaces
 // FIXME: can't figure out how to access XML_Error. Maybe because it
 //        is not 'public'?
 
-extension XML_Error : Equatable {
-  // struct: init(_ value: UInt32); var value: UInt32;
-}
-extension XML_Status : Equatable {
-  // struct: init(_ value: UInt32); var value: UInt32;
-}
 public func ==(lhs: XML_Error, rhs: XML_Error) -> Bool {
   // this just recurses (of course):
   //   return lhs == rhs
