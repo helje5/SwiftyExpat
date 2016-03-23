@@ -302,7 +302,7 @@ public enum ExpatResult : CustomStringConvertible, BooleanType {
 
 func dumpCharBuf(buf: UnsafePointer<CChar>, len : Int) {
   print("*-- buffer (len=\(len))")
-  for var i = 0; i < len; i++ {
+  for i in 0 ..< len {
     let cp = Int(buf[i])
     let c  = Character(UnicodeScalar(cp))
     print("  [\(i)]: \(cp) \(c)")

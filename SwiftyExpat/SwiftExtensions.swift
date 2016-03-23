@@ -12,8 +12,9 @@
 
 // Hack to compare values if we don't have access to the members of the struct,
 // eg XML_Error in v0.0.4
-public func isByteEqual<T>(var lhs: T, var rhs: T) -> Bool {
-  return memcmp(&lhs, &rhs, sizeof(T)) == 0
+public func isByteEqual<T>(lhs: T, rhs: T) -> Bool {
+  var rlhs = lhs, rrhs = rhs // needs var, sigh
+  return memcmp(&rlhs, &rrhs, sizeof(T)) == 0
 }
 
 extension String {
