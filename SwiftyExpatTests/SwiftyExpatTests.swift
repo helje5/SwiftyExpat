@@ -20,9 +20,9 @@ class SwiftyExpatTests: XCTestCase {
     p = Expat()
       .onStartElement   { name, attrs in print("<\(name) \(attrs)")       }
       .onEndElement     { name        in print(">\(name)")                }
-      .onStartNamespace { prefix, uri in print("+NS[\(prefix)] = \(uri)") }
-      .onEndNamespace   { prefix      in print("-NS[\(prefix)]")          }
-      .onCharacterData  { content     in print("TEXT: \(content)")        }
+      .onStartNamespace { prefix, uri in print("+NS[\(prefix ?? "")] = \(uri)")}
+      .onEndNamespace   { prefix      in print("-NS[\(prefix ?? "")]")    }
+      .onCharacterData  { content     in print("TEXT: \(content ?? "")")  }
       .onError          { error       in print("ERROR \(error)")          }
   }
   
@@ -38,11 +38,11 @@ class SwiftyExpatTests: XCTestCase {
     let testXML = "<hello xmlns='YoYo' a='5'><x>world</x></hello>"
     
     result = p.feed(testXML)
-    XCTAssert(result)
+    XCTAssert(result.boolValue)
     
     result = p.close() // EOF
     print("Feed result: \(result)")
-    XCTAssert(result)
+    XCTAssert(result.boolValue)
   }
 
   func testErrorHandling() {
@@ -53,10 +53,10 @@ class SwiftyExpatTests: XCTestCase {
     
     result = p.feed(testXML)
     print("Feed result: \(result)")
-    XCTAssert(!result)
+    XCTAssert(!result.boolValue)
     
     result = p.close() // EOF
-    XCTAssert(!result)
+    XCTAssert(!result.boolValue)
   }
   
   func testRawAPI() {
@@ -66,11 +66,19 @@ class SwiftyExpatTests: XCTestCase {
     defer { XML_ParserFree(p); }
     
     XML_SetStartElementHandler(p) { _, name, attrs in
-      let nameString = String.fromCString(name)!
+      #if swift(>=3.0)
+        let nameString = String(cString: name!)
+      #else
+        let nameString = String.fromCString(name)!
+      #endif
       print("start tag \(nameString)")
     }
     XML_SetEndElementHandler  (p) { _, name in
-      let nameString = String.fromCString(name)!
+      #if swift(>=3.0)
+        let nameString = String(cString: name!)
+      #else
+        let nameString = String.fromCString(name)!
+      #endif
       print("end tag \(nameString)")
     }
     

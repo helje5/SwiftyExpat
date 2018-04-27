@@ -1,9 +1,11 @@
-SwiftyExpat
-===========
+# SwiftyExpat
+
 
 Simple wrapper for the Expat XML parser.
 
-###Targets
+### Targets
+
+2018-04-27: Updated to use Swift 4.0.3 (aka Xcode 9.2).
 
 Updated to use Swift v0.2b5 (aka Xcode 7b5).
 
@@ -17,7 +19,7 @@ The project includes two targets:
 
 I suggest you start by looking at the SwiftyExpatTests.
 
-####SwiftyExpat
+#### SwiftyExpat
 
 This is a tiny framework wth a small Swift class to make the API nicer.
 Though this is not really necessary - Expat is reasonably easy to use from 
@@ -55,10 +57,10 @@ Note: The closures in the raw API cannot capture variables. If you need to pass
 around context (very likely ...), you need to fill the regular Expat 'user data' 
 field (which the wrapper does, if you need an example).
 
-####SwiftyExpatTests
+#### SwiftyExpatTests
 
 Just a tiny demo on how to invoke the parser.
 
-###Contact
+### Contact
 
 [@helje5](http://twitter.com/helje5) | helge@alwaysrightinstitute.com

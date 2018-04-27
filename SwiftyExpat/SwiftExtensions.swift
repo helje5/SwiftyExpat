@@ -6,6 +6,10 @@
 //  Copyright (c) 2014 Always Right Institute. All rights reserved.
 //
 
+#if swift(>=4.0)
+
+#else
+
 // Those are mostly dirty hacks to get what I need :-)
 // I would be very interested in better way to do those things, W/O using
 // Foundation.
@@ -36,3 +40,4 @@ extension String {
   }
 
 }
+#endif // <Swift 4
