@@ -9,6 +9,7 @@
 #include <time.h>                       /* time() */
 
 #define XML_BUILDING_EXPAT 1
+#define HAVE_EXPAT_CONFIG_H 1 // HH: required for SPM
 
 #ifdef COMPILED_FROM_DSP
 #include "winconfig.h"
