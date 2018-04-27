@@ -7,7 +7,9 @@ Simple wrapper for the Expat XML parser.
 
 2018-04-27: Updated to use Swift 4.0.3 (aka Xcode 9.2).
 
-Updated to use Swift v0.2b5 (aka Xcode 7b5).
+2015-12-09: Updated to use Swift 2.1.1 (aka Xcode 7.3?).
+
+20xx-yy-zz: Updated to use Swift v0.2b5 (aka Xcode 7b5).
 
 Note: The SwiftyExpat version for Swift 1.x was using a modified Expat which
 used blocks instead of C function pointer callbacks. Swift 2 now supports C 
