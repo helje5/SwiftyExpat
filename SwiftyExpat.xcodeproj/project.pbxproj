@@ -29,6 +29,7 @@
 		E8203CAB20933B62008C4EA8 /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9E20933B61008C4EA8 /* xmltok_impl.h */; };
 		E8203CAC20933B62008C4EA8 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = E8203C9F20933B61008C4EA8 /* xmltok.c */; };
 		E8203CAD20933B62008C4EA8 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = E8203CA020933B62008C4EA8 /* xmlparse.c */; };
+		E8203CAF2093527B008C4EA8 /* siphash.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203CAE2093527B008C4EA8 /* siphash.h */; };
 		E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77431971609A00E0557D /* SwiftyExpat.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8FB77941971767500E0557D /* SwiftyExpatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB77931971767500E0557D /* SwiftyExpatTests.swift */; };
 		E8FB77951971767500E0557D /* SwiftyExpat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FB773E1971609A00E0557D /* SwiftyExpat.framework */; };
@@ -88,6 +89,7 @@
 		E8203C9E20933B61008C4EA8 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = Sources/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
 		E8203C9F20933B61008C4EA8 /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok.c; path = Sources/Expat/xmltok.c; sourceTree = SOURCE_ROOT; };
 		E8203CA020933B62008C4EA8 /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlparse.c; path = Sources/Expat/xmlparse.c; sourceTree = SOURCE_ROOT; };
+		E8203CAE2093527B008C4EA8 /* siphash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = siphash.h; sourceTree = "<group>"; };
 		E8C667EF19757C40004EFA0C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8FB773E1971609A00E0557D /* SwiftyExpat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyExpat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FB77421971609A00E0557D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				E8203C9920933B61008C4EA8 /* expat_external.h */,
 				E8203C9820933B61008C4EA8 /* internal.h */,
 				E8203C9D20933B61008C4EA8 /* nametab.h */,
+				E8203CAE2093527B008C4EA8 /* siphash.h */,
 				E8203CA020933B62008C4EA8 /* xmlparse.c */,
 				E8203C9A20933B61008C4EA8 /* xmlrole.c */,
 				E8203C9B20933B61008C4EA8 /* xmlrole.h */,
@@ -227,6 +230,7 @@
 				E8203CA620933B62008C4EA8 /* expat_external.h in Headers */,
 				E8203CAA20933B62008C4EA8 /* nametab.h in Headers */,
 				E8203C9020933B3B008C4EA8 /* latin1tab.h in Headers */,
+				E8203CAF2093527B008C4EA8 /* siphash.h in Headers */,
 				E8203C8320933AE8008C4EA8 /* expat.h in Headers */,
 				E8203CA920933B62008C4EA8 /* ascii.h in Headers */,
 				E8203CAB20933B62008C4EA8 /* xmltok_impl.h in Headers */,

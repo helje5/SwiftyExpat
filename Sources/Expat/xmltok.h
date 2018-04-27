@@ -158,12 +158,15 @@ typedef int (PTRCALL *SCANNER)(const ENCODING *,
                                const char *,
                                const char **);
 
+enum XML_Convert_Result {
+  XML_CONVERT_COMPLETED = 0,
+  XML_CONVERT_INPUT_INCOMPLETE = 1,
+  XML_CONVERT_OUTPUT_EXHAUSTED = 2  /* and therefore potentially input remaining as well */
+};
+
 struct encoding {
   SCANNER scanners[XML_N_STATES];
   SCANNER literalScanners[XML_N_LITERAL_TYPES];
-  int (PTRCALL *sameName)(const ENCODING *,
-                          const char *,
-                          const char *);
   int (PTRCALL *nameMatchesAscii)(const ENCODING *,
                                   const char *,
                                   const char *,
@@ -186,12 +189,12 @@ struct encoding {
                             const char *ptr,
                             const char *end,
                             const char **badPtr);
-  void (PTRCALL *utf8Convert)(const ENCODING *enc,
+  enum XML_Convert_Result (PTRCALL *utf8Convert)(const ENCODING *enc,
                               const char **fromP,
                               const char *fromLim,
                               char **toP,
                               const char *toLim);
-  void (PTRCALL *utf16Convert)(const ENCODING *enc,
+  enum XML_Convert_Result (PTRCALL *utf16Convert)(const ENCODING *enc,
                                const char **fromP,
                                const char *fromLim,
                                unsigned short **toP,
@@ -253,8 +256,6 @@ struct encoding {
 
 #define XmlEntityValueTok(enc, ptr, end, nextTokPtr) \
    XmlLiteralTok(enc, XML_ENTITY_VALUE_LITERAL, ptr, end, nextTokPtr)
-
-#define XmlSameName(enc, ptr1, ptr2) (((enc)->sameName)(enc, ptr1, ptr2))
 
 #define XmlNameMatchesAscii(enc, ptr1, end1, ptr2) \
   (((enc)->nameMatchesAscii)(enc, ptr1, end1, ptr2))
