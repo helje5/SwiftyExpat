@@ -7,27 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E8C667EC19757405004EFA0C /* Expat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C667EB19757405004EFA0C /* Expat.swift */; };
-		E8C667EE19757B9D004EFA0C /* SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C667ED19757B9D004EFA0C /* SwiftExtensions.swift */; };
+		E8203C8320933AE8008C4EA8 /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C8220933AE8008C4EA8 /* expat.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8203C8620933B03008C4EA8 /* Expat.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8203C8420933B03008C4EA8 /* Expat.swift */; };
+		E8203C8720933B03008C4EA8 /* SwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8203C8520933B03008C4EA8 /* SwiftExtensions.swift */; };
+		E8203C8A20933B20008C4EA8 /* Changes in Resources */ = {isa = PBXBuildFile; fileRef = E8203C8820933B1F008C4EA8 /* Changes */; };
+		E8203C8B20933B20008C4EA8 /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = E8203C8920933B1F008C4EA8 /* COPYING */; };
+		E8203C9020933B3B008C4EA8 /* latin1tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C8C20933B3B008C4EA8 /* latin1tab.h */; };
+		E8203C9120933B3B008C4EA8 /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C8D20933B3B008C4EA8 /* asciitab.h */; };
+		E8203C9220933B3B008C4EA8 /* iasciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C8E20933B3B008C4EA8 /* iasciitab.h */; };
+		E8203C9320933B3B008C4EA8 /* utf8tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C8F20933B3B008C4EA8 /* utf8tab.h */; };
+		E8203CA120933B62008C4EA8 /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9420933B61008C4EA8 /* xmltok.h */; };
+		E8203CA220933B62008C4EA8 /* expat_config.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9520933B61008C4EA8 /* expat_config.h */; };
+		E8203CA320933B62008C4EA8 /* xmltok_impl.c in Sources */ = {isa = PBXBuildFile; fileRef = E8203C9620933B61008C4EA8 /* xmltok_impl.c */; };
+		E8203CA420933B62008C4EA8 /* xmltok_ns.c in Sources */ = {isa = PBXBuildFile; fileRef = E8203C9720933B61008C4EA8 /* xmltok_ns.c */; };
+		E8203CA520933B62008C4EA8 /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9820933B61008C4EA8 /* internal.h */; };
+		E8203CA620933B62008C4EA8 /* expat_external.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9920933B61008C4EA8 /* expat_external.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E8203CA720933B62008C4EA8 /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = E8203C9A20933B61008C4EA8 /* xmlrole.c */; };
+		E8203CA820933B62008C4EA8 /* xmlrole.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9B20933B61008C4EA8 /* xmlrole.h */; };
+		E8203CA920933B62008C4EA8 /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9C20933B61008C4EA8 /* ascii.h */; };
+		E8203CAA20933B62008C4EA8 /* nametab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9D20933B61008C4EA8 /* nametab.h */; };
+		E8203CAB20933B62008C4EA8 /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = E8203C9E20933B61008C4EA8 /* xmltok_impl.h */; };
+		E8203CAC20933B62008C4EA8 /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = E8203C9F20933B61008C4EA8 /* xmltok.c */; };
+		E8203CAD20933B62008C4EA8 /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = E8203CA020933B62008C4EA8 /* xmlparse.c */; };
 		E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77431971609A00E0557D /* SwiftyExpat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77721971667F00E0557D /* ascii.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB775F1971667F00E0557D /* ascii.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77731971667F00E0557D /* asciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77601971667F00E0557D /* asciitab.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77741971667F00E0557D /* Changes in Resources */ = {isa = PBXBuildFile; fileRef = E8FB77611971667F00E0557D /* Changes */; };
-		E8FB77751971667F00E0557D /* COPYING in Resources */ = {isa = PBXBuildFile; fileRef = E8FB77621971667F00E0557D /* COPYING */; };
-		E8FB77761971667F00E0557D /* expat.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77631971667F00E0557D /* expat.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77771971667F00E0557D /* expat_config.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77641971667F00E0557D /* expat_config.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77781971667F00E0557D /* expat_external.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77651971667F00E0557D /* expat_external.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77791971667F00E0557D /* iasciitab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77661971667F00E0557D /* iasciitab.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB777A1971667F00E0557D /* internal.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77671971667F00E0557D /* internal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB777C1971667F00E0557D /* nametab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77691971667F00E0557D /* nametab.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB777D1971667F00E0557D /* utf8tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776A1971667F00E0557D /* utf8tab.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB777E1971667F00E0557D /* xmlparse.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776B1971667F00E0557D /* xmlparse.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1 -fno-objc-arc"; }; };
-		E8FB777F1971667F00E0557D /* xmlrole.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776C1971667F00E0557D /* xmlrole.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1 -fno-objc-arc"; }; };
-		E8FB77801971667F00E0557D /* xmlrole.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776D1971667F00E0557D /* xmlrole.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77811971667F00E0557D /* xmltok.c in Sources */ = {isa = PBXBuildFile; fileRef = E8FB776E1971667F00E0557D /* xmltok.c */; settings = {COMPILER_FLAGS = "-DHAVE_EXPAT_CONFIG_H=1 -fno-objc-arc"; }; };
-		E8FB77821971667F00E0557D /* xmltok.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB776F1971667F00E0557D /* xmltok.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB77841971667F00E0557D /* xmltok_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB77711971667F00E0557D /* xmltok_impl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E8FB7786197166D800E0557D /* latin1tab.h in Headers */ = {isa = PBXBuildFile; fileRef = E8FB7785197166D800E0557D /* latin1tab.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E8FB77941971767500E0557D /* SwiftyExpatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8FB77931971767500E0557D /* SwiftyExpatTests.swift */; };
 		E8FB77951971767500E0557D /* SwiftyExpat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8FB773E1971609A00E0557D /* SwiftyExpat.framework */; };
 /* End PBXBuildFile section */
@@ -64,32 +66,32 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E8C667EB19757405004EFA0C /* Expat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Expat.swift; sourceTree = "<group>"; };
-		E8C667ED19757B9D004EFA0C /* SwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftExtensions.swift; sourceTree = "<group>"; };
+		E8203C8220933AE8008C4EA8 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = Sources/Expat/expat.h; sourceTree = SOURCE_ROOT; };
+		E8203C8420933B03008C4EA8 /* Expat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expat.swift; path = Sources/SwiftyExpat/Expat.swift; sourceTree = SOURCE_ROOT; };
+		E8203C8520933B03008C4EA8 /* SwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftExtensions.swift; path = Sources/SwiftyExpat/SwiftExtensions.swift; sourceTree = SOURCE_ROOT; };
+		E8203C8820933B1F008C4EA8 /* Changes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Changes; path = Sources/Expat/Changes; sourceTree = SOURCE_ROOT; };
+		E8203C8920933B1F008C4EA8 /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = COPYING; path = Sources/Expat/COPYING; sourceTree = SOURCE_ROOT; };
+		E8203C8C20933B3B008C4EA8 /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = latin1tab.h; path = Sources/Expat/latin1tab.h; sourceTree = SOURCE_ROOT; };
+		E8203C8D20933B3B008C4EA8 /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = asciitab.h; path = Sources/Expat/asciitab.h; sourceTree = SOURCE_ROOT; };
+		E8203C8E20933B3B008C4EA8 /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = Sources/Expat/iasciitab.h; sourceTree = SOURCE_ROOT; };
+		E8203C8F20933B3B008C4EA8 /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = Sources/Expat/utf8tab.h; sourceTree = SOURCE_ROOT; };
+		E8203C9420933B61008C4EA8 /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = Sources/Expat/xmltok.h; sourceTree = SOURCE_ROOT; };
+		E8203C9520933B61008C4EA8 /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_config.h; path = Sources/Expat/expat_config.h; sourceTree = SOURCE_ROOT; };
+		E8203C9620933B61008C4EA8 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = Sources/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
+		E8203C9720933B61008C4EA8 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = Sources/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
+		E8203C9820933B61008C4EA8 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = Sources/Expat/internal.h; sourceTree = SOURCE_ROOT; };
+		E8203C9920933B61008C4EA8 /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = Sources/Expat/expat_external.h; sourceTree = SOURCE_ROOT; };
+		E8203C9A20933B61008C4EA8 /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlrole.c; path = Sources/Expat/xmlrole.c; sourceTree = SOURCE_ROOT; };
+		E8203C9B20933B61008C4EA8 /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmlrole.h; path = Sources/Expat/xmlrole.h; sourceTree = SOURCE_ROOT; };
+		E8203C9C20933B61008C4EA8 /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = Sources/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
+		E8203C9D20933B61008C4EA8 /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = nametab.h; path = Sources/Expat/nametab.h; sourceTree = SOURCE_ROOT; };
+		E8203C9E20933B61008C4EA8 /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok_impl.h; path = Sources/Expat/xmltok_impl.h; sourceTree = SOURCE_ROOT; };
+		E8203C9F20933B61008C4EA8 /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok.c; path = Sources/Expat/xmltok.c; sourceTree = SOURCE_ROOT; };
+		E8203CA020933B62008C4EA8 /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlparse.c; path = Sources/Expat/xmlparse.c; sourceTree = SOURCE_ROOT; };
 		E8C667EF19757C40004EFA0C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		E8FB773E1971609A00E0557D /* SwiftyExpat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyExpat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FB77421971609A00E0557D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FB77431971609A00E0557D /* SwiftyExpat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftyExpat.h; sourceTree = "<group>"; };
-		E8FB775F1971667F00E0557D /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ascii.h; sourceTree = "<group>"; };
-		E8FB77601971667F00E0557D /* asciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = asciitab.h; sourceTree = "<group>"; };
-		E8FB77611971667F00E0557D /* Changes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Changes; sourceTree = "<group>"; };
-		E8FB77621971667F00E0557D /* COPYING */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = COPYING; sourceTree = "<group>"; };
-		E8FB77631971667F00E0557D /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = expat/expat.h; sourceTree = "<group>"; };
-		E8FB77641971667F00E0557D /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expat_config.h; sourceTree = "<group>"; };
-		E8FB77651971667F00E0557D /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = expat_external.h; sourceTree = "<group>"; };
-		E8FB77661971667F00E0557D /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iasciitab.h; sourceTree = "<group>"; };
-		E8FB77671971667F00E0557D /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = internal.h; sourceTree = "<group>"; };
-		E8FB77691971667F00E0557D /* nametab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = nametab.h; sourceTree = "<group>"; };
-		E8FB776A1971667F00E0557D /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utf8tab.h; sourceTree = "<group>"; };
-		E8FB776B1971667F00E0557D /* xmlparse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmlparse.c; sourceTree = "<group>"; };
-		E8FB776C1971667F00E0557D /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmlrole.c; sourceTree = "<group>"; };
-		E8FB776D1971667F00E0557D /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmlrole.h; sourceTree = "<group>"; };
-		E8FB776E1971667F00E0557D /* xmltok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmltok.c; sourceTree = "<group>"; };
-		E8FB776F1971667F00E0557D /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmltok.h; sourceTree = "<group>"; };
-		E8FB77701971667F00E0557D /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmltok_impl.c; sourceTree = "<group>"; };
-		E8FB77711971667F00E0557D /* xmltok_impl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = xmltok_impl.h; sourceTree = "<group>"; };
-		E8FB7785197166D800E0557D /* latin1tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = latin1tab.h; sourceTree = "<group>"; };
-		E8FB77881971673600E0557D /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xmltok_ns.c; sourceTree = "<group>"; };
 		E8FB778F1971767500E0557D /* SwiftyExpatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftyExpatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FB77921971767500E0557D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8FB77931971767500E0557D /* SwiftyExpatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyExpatTests.swift; sourceTree = "<group>"; };
@@ -136,9 +138,9 @@
 		E8FB77401971609A00E0557D /* SwiftyExpat */ = {
 			isa = PBXGroup;
 			children = (
-				E8C667EB19757405004EFA0C /* Expat.swift */,
-				E8C667ED19757B9D004EFA0C /* SwiftExtensions.swift */,
-				E8FB77631971667F00E0557D /* expat.h */,
+				E8203C8420933B03008C4EA8 /* Expat.swift */,
+				E8203C8520933B03008C4EA8 /* SwiftExtensions.swift */,
+				E8203C8220933AE8008C4EA8 /* expat.h */,
 				E8FB77431971609A00E0557D /* SwiftyExpat.h */,
 				E8FB775E1971667F00E0557D /* expat */,
 				E8FB77411971609A00E0557D /* Supporting Files */,
@@ -157,8 +159,8 @@
 		E8FB775E1971667F00E0557D /* expat */ = {
 			isa = PBXGroup;
 			children = (
-				E8FB77621971667F00E0557D /* COPYING */,
-				E8FB77611971667F00E0557D /* Changes */,
+				E8203C8820933B1F008C4EA8 /* Changes */,
+				E8203C8920933B1F008C4EA8 /* COPYING */,
 				E8FB7787197166E600E0557D /* char tables */,
 				E8FB779F1971E5EE00E0557D /* implementation */,
 			);
@@ -168,10 +170,10 @@
 		E8FB7787197166E600E0557D /* char tables */ = {
 			isa = PBXGroup;
 			children = (
-				E8FB7785197166D800E0557D /* latin1tab.h */,
-				E8FB77601971667F00E0557D /* asciitab.h */,
-				E8FB77661971667F00E0557D /* iasciitab.h */,
-				E8FB776A1971667F00E0557D /* utf8tab.h */,
+				E8203C8D20933B3B008C4EA8 /* asciitab.h */,
+				E8203C8E20933B3B008C4EA8 /* iasciitab.h */,
+				E8203C8C20933B3B008C4EA8 /* latin1tab.h */,
+				E8203C8F20933B3B008C4EA8 /* utf8tab.h */,
 			);
 			name = "char tables";
 			sourceTree = "<group>";
@@ -196,19 +198,19 @@
 		E8FB779F1971E5EE00E0557D /* implementation */ = {
 			isa = PBXGroup;
 			children = (
-				E8FB775F1971667F00E0557D /* ascii.h */,
-				E8FB77641971667F00E0557D /* expat_config.h */,
-				E8FB77651971667F00E0557D /* expat_external.h */,
-				E8FB77671971667F00E0557D /* internal.h */,
-				E8FB77691971667F00E0557D /* nametab.h */,
-				E8FB776B1971667F00E0557D /* xmlparse.c */,
-				E8FB776D1971667F00E0557D /* xmlrole.h */,
-				E8FB776C1971667F00E0557D /* xmlrole.c */,
-				E8FB776F1971667F00E0557D /* xmltok.h */,
-				E8FB776E1971667F00E0557D /* xmltok.c */,
-				E8FB77881971673600E0557D /* xmltok_ns.c */,
-				E8FB77711971667F00E0557D /* xmltok_impl.h */,
-				E8FB77701971667F00E0557D /* xmltok_impl.c */,
+				E8203C9C20933B61008C4EA8 /* ascii.h */,
+				E8203C9520933B61008C4EA8 /* expat_config.h */,
+				E8203C9920933B61008C4EA8 /* expat_external.h */,
+				E8203C9820933B61008C4EA8 /* internal.h */,
+				E8203C9D20933B61008C4EA8 /* nametab.h */,
+				E8203CA020933B62008C4EA8 /* xmlparse.c */,
+				E8203C9A20933B61008C4EA8 /* xmlrole.c */,
+				E8203C9B20933B61008C4EA8 /* xmlrole.h */,
+				E8203C9620933B61008C4EA8 /* xmltok_impl.c */,
+				E8203C9E20933B61008C4EA8 /* xmltok_impl.h */,
+				E8203C9720933B61008C4EA8 /* xmltok_ns.c */,
+				E8203C9F20933B61008C4EA8 /* xmltok.c */,
+				E8203C9420933B61008C4EA8 /* xmltok.h */,
 			);
 			name = implementation;
 			sourceTree = "<group>";
@@ -220,20 +222,20 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FB77761971667F00E0557D /* expat.h in Headers */,
-				E8FB77781971667F00E0557D /* expat_external.h in Headers */,
-				E8FB77771971667F00E0557D /* expat_config.h in Headers */,
-				E8FB77801971667F00E0557D /* xmlrole.h in Headers */,
-				E8FB777C1971667F00E0557D /* nametab.h in Headers */,
-				E8FB77821971667F00E0557D /* xmltok.h in Headers */,
-				E8FB777D1971667F00E0557D /* utf8tab.h in Headers */,
-				E8FB77721971667F00E0557D /* ascii.h in Headers */,
-				E8FB77731971667F00E0557D /* asciitab.h in Headers */,
-				E8FB777A1971667F00E0557D /* internal.h in Headers */,
-				E8FB7786197166D800E0557D /* latin1tab.h in Headers */,
-				E8FB77841971667F00E0557D /* xmltok_impl.h in Headers */,
-				E8FB77791971667F00E0557D /* iasciitab.h in Headers */,
+				E8203C9120933B3B008C4EA8 /* asciitab.h in Headers */,
+				E8203CA620933B62008C4EA8 /* expat_external.h in Headers */,
+				E8203CAA20933B62008C4EA8 /* nametab.h in Headers */,
+				E8203C9020933B3B008C4EA8 /* latin1tab.h in Headers */,
+				E8203C8320933AE8008C4EA8 /* expat.h in Headers */,
+				E8203CA920933B62008C4EA8 /* ascii.h in Headers */,
+				E8203CAB20933B62008C4EA8 /* xmltok_impl.h in Headers */,
+				E8203CA120933B62008C4EA8 /* xmltok.h in Headers */,
+				E8203CA520933B62008C4EA8 /* internal.h in Headers */,
+				E8203C9220933B3B008C4EA8 /* iasciitab.h in Headers */,
+				E8203CA820933B62008C4EA8 /* xmlrole.h in Headers */,
+				E8203C9320933B3B008C4EA8 /* utf8tab.h in Headers */,
 				E8FB77441971609A00E0557D /* SwiftyExpat.h in Headers */,
+				E8203CA220933B62008C4EA8 /* expat_config.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +293,7 @@
 				TargetAttributes = {
 					E8FB773D1971609A00E0557D = {
 						CreatedOnToolsVersion = 6.0;
+						LastSwiftMigration = 0920;
 					};
 					E8FB778E1971767500E0557D = {
 						CreatedOnToolsVersion = 6.0;
@@ -321,8 +324,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FB77751971667F00E0557D /* COPYING in Resources */,
-				E8FB77741971667F00E0557D /* Changes in Resources */,
+				E8203C8B20933B20008C4EA8 /* COPYING in Resources */,
+				E8203C8A20933B20008C4EA8 /* Changes in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,11 +343,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8FB77811971667F00E0557D /* xmltok.c in Sources */,
-				E8FB777E1971667F00E0557D /* xmlparse.c in Sources */,
-				E8C667EE19757B9D004EFA0C /* SwiftExtensions.swift in Sources */,
-				E8C667EC19757405004EFA0C /* Expat.swift in Sources */,
-				E8FB777F1971667F00E0557D /* xmlrole.c in Sources */,
+				E8203C8620933B03008C4EA8 /* Expat.swift in Sources */,
+				E8203CA320933B62008C4EA8 /* xmltok_impl.c in Sources */,
+				E8203CA720933B62008C4EA8 /* xmlrole.c in Sources */,
+				E8203CAC20933B62008C4EA8 /* xmltok.c in Sources */,
+				E8203CAD20933B62008C4EA8 /* xmlparse.c in Sources */,
+				E8203C8720933B03008C4EA8 /* SwiftExtensions.swift in Sources */,
+				E8203CA420933B62008C4EA8 /* xmltok_ns.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +434,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-D",
+					HAVE_EXPAT_CONFIG_H,
+				);
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -477,6 +486,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_CFLAGS = (
+					"-D",
+					HAVE_EXPAT_CONFIG_H,
+				);
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
@@ -488,6 +501,7 @@
 		E8FB77551971609A00E0557D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -500,6 +514,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.alwaysrightinstitute.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -507,6 +522,7 @@
 		E8FB77561971609A00E0557D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
