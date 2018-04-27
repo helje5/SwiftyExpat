@@ -439,6 +439,7 @@
 					"-D",
 					HAVE_EXPAT_CONFIG_H,
 				);
+				OTHER_SWIFT_FLAGS = "-DXcode";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -491,6 +492,7 @@
 					"-D",
 					HAVE_EXPAT_CONFIG_H,
 				);
+				OTHER_SWIFT_FLAGS = "-DXcode";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;

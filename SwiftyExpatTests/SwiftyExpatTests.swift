@@ -9,6 +9,10 @@
 import Cocoa
 import XCTest
 import SwiftyExpat
+#if Xcode // wasn't there an SPM flag?
+#else
+  import Expat
+#endif
 
 class SwiftyExpatTests: XCTestCase {
   

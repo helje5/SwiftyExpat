@@ -3,8 +3,13 @@
 //  SwiftyExpat
 //
 //  Created by Helge Heß on 7/15/14.
-//  Copyright (c) 2014 Always Right Institute. All rights reserved.
+//  Copyright (c) 2014-2018 Always Right Institute. All rights reserved.
 //
+
+#if Xcode // wasn't there an SPM flag?
+#else
+  import Expat
+#endif
 
 /**
  * Simple wrapper for the Expat parser. Though the block based Expat is
