@@ -1,5 +1,11 @@
 # SwiftyExpat
 
+![Swift2](https://img.shields.io/badge/swift-2-blue.svg)
+![Swift4](https://img.shields.io/badge/swift-4-blue.svg)
+![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
+![tuxOS](https://img.shields.io/badge/os-tuxOS-green.svg?style=flat)
+![Travis](https://travis-ci.org/AlwaysRightInstitute/SwiftyExpat.svg?branch=develop)
+
 Simple wrapper for the Expat XML parser.
 
 ### ChangeLog
