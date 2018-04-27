@@ -76,7 +76,7 @@
 		E8203C8E20933B3B008C4EA8 /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = Sources/Expat/iasciitab.h; sourceTree = SOURCE_ROOT; };
 		E8203C8F20933B3B008C4EA8 /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = Sources/Expat/utf8tab.h; sourceTree = SOURCE_ROOT; };
 		E8203C9420933B61008C4EA8 /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = Sources/Expat/xmltok.h; sourceTree = SOURCE_ROOT; };
-		E8203C9520933B61008C4EA8 /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_config.h; path = Sources/Expat/include/expat_config.h; sourceTree = SOURCE_ROOT; };
+		E8203C9520933B61008C4EA8 /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_config.h; path = Sources/Expat/expat_config.h; sourceTree = SOURCE_ROOT; };
 		E8203C9620933B61008C4EA8 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = Sources/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		E8203C9720933B61008C4EA8 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = Sources/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
 		E8203C9820933B61008C4EA8 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = Sources/Expat/internal.h; sourceTree = SOURCE_ROOT; };

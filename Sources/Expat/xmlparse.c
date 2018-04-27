@@ -20,7 +20,7 @@
 #elif defined(__WATCOMC__)
 #include "watcomconfig.h"
 #elif defined(HAVE_EXPAT_CONFIG_H)
-#include <expat_config.h>
+#include "expat_config.h"
 #endif /* ndef COMPILED_FROM_DSP */
 
 #include "ascii.h"
