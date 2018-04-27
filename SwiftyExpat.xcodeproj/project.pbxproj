@@ -66,7 +66,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E8203C8220933AE8008C4EA8 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = Sources/Expat/expat.h; sourceTree = SOURCE_ROOT; };
+		E8203C8220933AE8008C4EA8 /* expat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat.h; path = Sources/Expat/include/expat.h; sourceTree = SOURCE_ROOT; };
 		E8203C8420933B03008C4EA8 /* Expat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Expat.swift; path = Sources/SwiftyExpat/Expat.swift; sourceTree = SOURCE_ROOT; };
 		E8203C8520933B03008C4EA8 /* SwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiftExtensions.swift; path = Sources/SwiftyExpat/SwiftExtensions.swift; sourceTree = SOURCE_ROOT; };
 		E8203C8820933B1F008C4EA8 /* Changes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Changes; path = Sources/Expat/Changes; sourceTree = SOURCE_ROOT; };
@@ -76,11 +76,11 @@
 		E8203C8E20933B3B008C4EA8 /* iasciitab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iasciitab.h; path = Sources/Expat/iasciitab.h; sourceTree = SOURCE_ROOT; };
 		E8203C8F20933B3B008C4EA8 /* utf8tab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = utf8tab.h; path = Sources/Expat/utf8tab.h; sourceTree = SOURCE_ROOT; };
 		E8203C9420933B61008C4EA8 /* xmltok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmltok.h; path = Sources/Expat/xmltok.h; sourceTree = SOURCE_ROOT; };
-		E8203C9520933B61008C4EA8 /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_config.h; path = Sources/Expat/expat_config.h; sourceTree = SOURCE_ROOT; };
+		E8203C9520933B61008C4EA8 /* expat_config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_config.h; path = Sources/Expat/include/expat_config.h; sourceTree = SOURCE_ROOT; };
 		E8203C9620933B61008C4EA8 /* xmltok_impl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_impl.c; path = Sources/Expat/xmltok_impl.c; sourceTree = SOURCE_ROOT; };
 		E8203C9720933B61008C4EA8 /* xmltok_ns.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmltok_ns.c; path = Sources/Expat/xmltok_ns.c; sourceTree = SOURCE_ROOT; };
 		E8203C9820933B61008C4EA8 /* internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = internal.h; path = Sources/Expat/internal.h; sourceTree = SOURCE_ROOT; };
-		E8203C9920933B61008C4EA8 /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = Sources/Expat/expat_external.h; sourceTree = SOURCE_ROOT; };
+		E8203C9920933B61008C4EA8 /* expat_external.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = expat_external.h; path = Sources/Expat/include/expat_external.h; sourceTree = SOURCE_ROOT; };
 		E8203C9A20933B61008C4EA8 /* xmlrole.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = xmlrole.c; path = Sources/Expat/xmlrole.c; sourceTree = SOURCE_ROOT; };
 		E8203C9B20933B61008C4EA8 /* xmlrole.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmlrole.h; path = Sources/Expat/xmlrole.h; sourceTree = SOURCE_ROOT; };
 		E8203C9C20933B61008C4EA8 /* ascii.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ascii.h; path = Sources/Expat/ascii.h; sourceTree = SOURCE_ROOT; };
@@ -164,7 +164,8 @@
 				E8FB7787197166E600E0557D /* char tables */,
 				E8FB779F1971E5EE00E0557D /* implementation */,
 			);
-			path = expat;
+			name = expat;
+			path = ../Sources/Expat;
 			sourceTree = "<group>";
 		};
 		E8FB7787197166E600E0557D /* char tables */ = {
