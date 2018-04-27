@@ -1,23 +1,26 @@
 # SwiftyExpat
 
-
 Simple wrapper for the Expat XML parser.
 
-### Targets
+### ChangeLog
 
-2018-04-27: Updated to use Swift 4.0.3 (aka Xcode 9.2).
+2018-04-27: Updated to use Swift 4.0.3 (aka Xcode 9.2). Support for Swift Package Manager.
 
 2015-12-09: Updated to use Swift 2.1.1 (aka Xcode 7.3?).
 
 20xx-yy-zz: Updated to use Swift v0.2b5 (aka Xcode 7b5).
 
 Note: The SwiftyExpat version for Swift 1.x was using a modified Expat which
-used blocks instead of C function pointer callbacks. Swift 2 now supports C 
+used blocks instead of C function pointer callbacks. Swift 2 now supports C
 function pointer calls and hence this project got rewritten for this.
+
+### Targets
 
 The project includes two targets:
 - SwiftyExpat
 - SwiftyExpatTests
+
+(the SPM setup has `Expat` as an own target)
 
 I suggest you start by looking at the SwiftyExpatTests.
 
