@@ -308,12 +308,12 @@ public final class Expat {
 
 public extension Expat { // Namespaces
   
-  public typealias StartElementNSHandler =
+  typealias StartElementNSHandler =
                      ( String, String, [String : String] ) -> Void
-  public typealias EndElementNSHandler = ( String, String ) -> Void
+  typealias EndElementNSHandler = ( String, String ) -> Void
   
   #if swift(>=3.2)
-    public func onStartElementNS(cb: @escaping StartElementNSHandler) -> Self {
+    func onStartElementNS(cb: @escaping StartElementNSHandler) -> Self {
       let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
       return onStartElement {
         // split(separator:maxSplits:omittingEmptySubsequences:)
@@ -323,7 +323,7 @@ public extension Expat { // Namespaces
       }
     }
   
-    public func onEndElementNS(cb: @escaping EndElementNSHandler) -> Self {
+    func onEndElementNS(cb: @escaping EndElementNSHandler) -> Self {
       let sep = self.nsSeparator // so that we don't capture 'self' (necessary?)
       return onEndElement {
         let comps = $0.split(separator: sep, maxSplits: 1,
