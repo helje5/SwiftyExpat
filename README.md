@@ -2,6 +2,7 @@
 
 ![Swift2](https://img.shields.io/badge/swift-2-blue.svg)
 ![Swift4](https://img.shields.io/badge/swift-4-blue.svg)
+![Swift5](https://img.shields.io/badge/swift-5-blue.svg)
 ![macOS](https://img.shields.io/badge/os-macOS-green.svg?style=flat)
 ![tuxOS](https://img.shields.io/badge/os-tuxOS-green.svg?style=flat)
 ![Travis](https://travis-ci.org/AlwaysRightInstitute/SwiftyExpat.svg?branch=develop)
@@ -10,11 +11,13 @@ Simple wrapper for the Expat XML parser.
 
 ### ChangeLog
 
-2018-04-27: Updated to use Swift 4.0.3 (aka Xcode 9.2). Support for Swift Package Manager.
+2019-10-04: Update to work w/ Swift 5.1 (aka Xcode 11).
 
-2015-12-09: Updated to use Swift 2.1.1 (aka Xcode 7.3?).
+2018-04-27: Updated to work w/ Swift 4.0.3 (aka Xcode 9.2). Support for Swift Package Manager.
 
-20xx-yy-zz: Updated to use Swift v0.2b5 (aka Xcode 7b5).
+2015-12-09: Updated to work w/ Swift 2.1.1 (aka Xcode 7.3?).
+
+20xx-yy-zz: Updated to work w/ Swift v0.2b5 (aka Xcode 7b5).
 
 Note: The SwiftyExpat version for Swift 1.x was using a modified Expat which
 used blocks instead of C function pointer callbacks. Swift 2 now supports C
