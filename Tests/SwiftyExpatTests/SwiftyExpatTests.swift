@@ -6,7 +6,6 @@
 //  Copyright (c) 2014-2020 Always Right Institute. All rights reserved.
 //
 
-import Cocoa
 import XCTest
 import SwiftyExpat
 #if Xcode // wasn't there an SPM flag?
