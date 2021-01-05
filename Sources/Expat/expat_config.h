@@ -7,8 +7,10 @@
 /* Define to 1 if you have the `arc4random' function. */
 /* #undef HAVE_ARC4RANDOM */
 
+#ifdef __APPLE__
 /* Define to 1 if you have the `arc4random_buf' function. */
 #define HAVE_ARC4RANDOM_BUF 1
+#endif
 
 /* Define to 1 if you have the `bcopy' function. */
 #define HAVE_BCOPY 1

@@ -71,4 +71,5 @@ fastlane/test_output
 Package.resolved
 dump*.json
 .swiftpm
+.docker.build
 
