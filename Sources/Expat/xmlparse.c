@@ -74,7 +74,7 @@ typedef unsigned __int32 uintptr_t;
 #ifdef _WIN32
 #  include "winconfig.h"
 #elif defined(HAVE_EXPAT_CONFIG_H)
-#  include <expat_config.h>
+#  include "expat_config.h"
 #endif /* ndef _WIN32 */
 
 #include "ascii.h"
