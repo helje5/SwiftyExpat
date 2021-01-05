@@ -2920,7 +2920,7 @@ doContent(XML_Parser parser, int startTagLevel, const ENCODING *enc,
          However, now we have a start/endCdataSectionHandler, so it seems
          easier to let the user deal with this.
       */
-      else if (0 && parser->m_characterDataHandler)
+      else if (/* DISABLES CODE */ (0) && parser->m_characterDataHandler)
         parser->m_characterDataHandler(parser->m_handlerArg, parser->m_dataBuf,
                                        0);
       /* END disabled code */
