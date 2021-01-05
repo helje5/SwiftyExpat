@@ -3601,7 +3601,7 @@ doCdataSection(XML_Parser parser, const ENCODING *enc, const char **startPtr,
         parser->m_endCdataSectionHandler(parser->m_handlerArg);
       /* BEGIN disabled code */
       /* see comment under XML_TOK_CDATA_SECT_OPEN */
-      else if (0 && parser->m_characterDataHandler)
+      else if (/* DISABLES CODE */ (0) && parser->m_characterDataHandler)
         parser->m_characterDataHandler(parser->m_handlerArg, parser->m_dataBuf,
                                        0);
       /* END disabled code */
