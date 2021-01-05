@@ -3,10 +3,9 @@
 //  SwiftyExpatTests
 //
 //  Created by Helge Heß on 7/12/14.
-//  Copyright (c) 2014 Always Right Institute. All rights reserved.
+//  Copyright (c) 2014-2020 Always Right Institute. All rights reserved.
 //
 
-import Cocoa
 import XCTest
 import SwiftyExpat
 #if Xcode // wasn't there an SPM flag?
@@ -89,4 +88,10 @@ class SwiftyExpatTests: XCTestCase {
     XML_Parse(p, "<hello/>", 8, 0)
     XML_Parse(p, "", 0, 1)
   }
+
+  static var allTests = [
+    ( "testSimpleParsing" , testSimpleParsing ),
+    ( "testErrorHandling" , testErrorHandling ),
+    ( "testRawAPI"        , testRawAPI        )
+  ]
 }
