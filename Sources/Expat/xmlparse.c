@@ -3425,7 +3425,7 @@ storeAtts(XML_Parser parser, const ENCODING *enc,
           */
           unsigned char step = 0;
           unsigned long mask = nsAttsSize - 1;
-          j = uriHash & mask;  /* index into hash table */
+          j = (int)uriHash & mask;  /* index into hash table */
           while (parser->m_nsAtts[j].version == version) {
             /* for speed we compare stored hash values first */
             if (uriHash == parser->m_nsAtts[j].hash) {
