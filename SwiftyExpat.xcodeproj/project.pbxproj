@@ -187,7 +187,8 @@
 				E8FB77931971767500E0557D /* SwiftyExpatTests.swift */,
 				E8FB77911971767500E0557D /* Supporting Files */,
 			);
-			path = SwiftyExpatTests;
+			name = SwiftyExpatTests;
+			path = Tests/SwiftyExpatTests;
 			sourceTree = "<group>";
 		};
 		E8FB77911971767500E0557D /* Supporting Files */ = {
@@ -568,7 +569,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SwiftyExpatTests/Info.plist;
+				INFOPLIST_FILE = Tests/SwiftyExpatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.alwaysrightinstitute.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -583,7 +584,7 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = SwiftyExpatTests/Info.plist;
+				INFOPLIST_FILE = Tests/SwiftyExpatTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.alwaysrightinstitute.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

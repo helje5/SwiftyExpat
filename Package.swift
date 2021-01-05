@@ -8,13 +8,12 @@ let package = Package(
         .library(name: "Expat",       targets: [ "Expat"       ]),
         .library(name: "SwiftyExpat", targets: [ "SwiftyExpat" ])
     ],
-    dependencies: [
-    ],
+    dependencies: [],
     targets: [
         .target(name: "Expat",       dependencies: [ ],
-                cSettings: [
-                  .define("HAVE_EXPAT_CONFIG_H")
-                ]),
-        .target(name: "SwiftyExpat", dependencies: [ "Expat" ])
+                cSettings: [ .define("HAVE_EXPAT_CONFIG_H") ]),
+        .target(name: "SwiftyExpat", dependencies: [ "Expat" ]),
+        
+        .testTarget(name: "SwiftyExpatTests", dependencies: [ "SwiftyExpat" ])
     ]
 )
